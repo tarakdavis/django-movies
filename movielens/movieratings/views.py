@@ -3,6 +3,20 @@ from django.http import HttpResponse
 from django.db.models import Count, Avg
 from .models import Movie, Rating, Rater
 # Create your views here.
+from django.views import generic
+
+class IndexView(generic.ListView):
+    template_name = 'movieratings/index.html'
+    context_object_name = 'all_movies'
+
+    def get_queryset(self):
+        return Movie.objects.all()
+
+class MovieDetail(generic.DetailView):
+    model = Movie
+    template_name = movieratings/movie_detail.html
+
+
 
 
 def index(request):
