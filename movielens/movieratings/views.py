@@ -1,8 +1,36 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.db.models import Count, Avg
 from .models import Movie, Rating, Rater
 from django.views import generic
+
+
+#====================== REGISTRATION ============================
+from django.shortcuts import render_to_response
+from django.contrib.auth.forms import UserCreationForm
+from django.core.context_processors import csrf
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/accounts/register/complete')
+
+    else:
+        form = UserCreationForm()
+    token = {}
+    token.update(csrf(request))
+    token['form'] = form
+
+    return render_to_response('registration/registration_form.html', token)
+
+
+def registration_complete(request):
+    return render_to_response('registration/registration_complete.html')
+#====================== REGISTRATION ============================
+
 
 
 class IndexView(models.Model):
