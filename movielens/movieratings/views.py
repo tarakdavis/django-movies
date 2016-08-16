@@ -14,7 +14,7 @@ class IndexView(generic.ListView):
 
 class MovieDetail(generic.DetailView):
     model = Movie
-    template_name = movieratings/movie_detail.html
+    template_name = 'movieratings/movie_detail.html'
 
 
 
