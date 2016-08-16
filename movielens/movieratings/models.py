@@ -37,6 +37,7 @@ class Rating(models.Model):
         return all_movie_ratings
 
     def get_movie_average_rating(which_one):
+        too_few = False
         the_movie = Rating.objects.filter(movie_id=which_one)
         agg_score = 0
         for each in the_movie:
@@ -49,3 +50,19 @@ class Rating(models.Model):
         if len(the_movie) < 20:
             too_few = True
         return (avg_rating, too_few)
+
+    def get_top_rated_movies(num):
+            averages = []
+            top = []
+            top_movies = Movie.objects.all().count()
+            for i in range(top_movies):
+                avg, not_enough_reviews = Rating.get_movie_average_rating(i+1)
+                if not_enough_reviews is False:
+                    averages.append((avg, i+1))
+                print("\n"*50)
+                c = (i+1) / 1683
+                print("Percentage complete:  ", c, "%")
+            averages.sort(reverse=True)
+            for i in range(num):
+                top.append(averages[i])
+            return top      # returns list of TUPLES !
