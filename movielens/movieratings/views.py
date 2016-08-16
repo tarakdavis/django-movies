@@ -11,5 +11,5 @@ def index(request):
 def toprated(request):
     min_num = 50
     movies = Movies.objects.annotate(num_ratings=Count('rating')).filter(num_ratings__gte=min_num)
-    toprated = movies.annotate(avg_rating=Avg('rating__score')).order_by('-avg_rating')
+    toprated = movies.annotate(avg_rating=Avg('rating__score')).order_by('-avg_rating')[:20]
     return render(request, 'toprated.html', {'toprated': toprated})
