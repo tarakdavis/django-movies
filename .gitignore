@@ -1,0 +1,4 @@
+.direnv
+.envrc
+secrets.py
+secret.py
