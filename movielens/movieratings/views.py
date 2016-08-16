@@ -39,12 +39,12 @@ def loggedin(request):
 #====================== REGISTRATION ============================
 
 
-
-class IndexView(models.Model):
-    template_name = 'movieratings/index.html'
-
-    def index(self):
-        return HttpResponse("Hello, world. You're at the movieratings index.")
+#
+# class IndexView(models.Model):
+#     template_name = 'movieratings/index.html'
+#
+#     def index(self):
+#         return HttpResponse("Hello, world. You're at the movieratings index.")
 
 
 class AllMovies(generic.ListView):
