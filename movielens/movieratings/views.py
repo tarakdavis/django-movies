@@ -21,9 +21,18 @@ class MovieDetail(generic.DetailView):
 
 def index(request):
     return HttpResponse("Hello, world. You're at the movieratings index.")
+# 
+# def toprated(request):
+#     min_num = 50
+#     movies = Movies.objects.annotate(num_ratings=Count('rating')).filter(num_ratings__gte=min_num)
+#     toprated = movies.annotate(avg_rating=Avg('rating__score')).order_by('-avg_rating')[:20]
+#     return render(request, 'toprated.html', {'toprated': toprated})
 
-def toprated(request):
-    min_num = 50
-    movies = Movies.objects.annotate(num_ratings=Count('rating')).filter(num_ratings__gte=min_num)
-    toprated = movies.annotate(avg_rating=Avg('rating__score')).order_by('-avg_rating')[:20]
-    return render(request, 'toprated.html', {'toprated': toprated})
+class TopRated(generic.ListView):
+    template_name = 'movieratings/toprated.html'
+    context_object_name = 'toprated'
+
+    def get_queryset(self):
+        movies = Movies.objects.annotate(num_ratings=Count('rating')).filter(num_ratings__gte=min_num)
+        toprated = movies.annotate(avg_rating=Avg('rating__score')).order_by('-avg_rating')[:20]
+        return toprated
