@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
+from django.db import models
 from django.db.models import Count, Avg
 from .models import Movie, Rating, Rater
 from django.views import generic
