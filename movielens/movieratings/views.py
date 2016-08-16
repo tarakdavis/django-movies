@@ -1,18 +1,13 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
-from django.db import models
+from django.shortcuts import render, get_object_or_404, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
+from django.db import models
 from django.db.models import Count, Avg
 from .models import Movie, Rating, Rater
 from django.views import generic
-
-
-#====================== REGISTRATION ============================
-from django.shortcuts import render_to_response
 from django.contrib.auth.forms import UserCreationForm
-from django.core.context_processors import csrf
+# from django.core.context_processors import csrf
 
-
+# ====================== REGISTRATION ============================
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -32,19 +27,19 @@ def register(request):
 def registration_complete(request):
     return render_to_response('registration/registration_complete.html')
 
+
 #                   ==== login ====
 def loggedin(request):
     return render_to_response('registration/loggedin.html',
                               {'username': request.user.username})
-#====================== REGISTRATION ============================
+# ====================== REGISTRATION ============================
 
 
-
-class IndexView(models.Model):
+class IndexView(generic.ListView):
     template_name = 'movieratings/index.html'
 
-    def index(self):
-        return HttpResponse("Hello, world. You're at the movieratings index.")
+    def get_queryset(self):
+        return Movie.objects.all()
 
 
 class AllMovies(generic.ListView):
