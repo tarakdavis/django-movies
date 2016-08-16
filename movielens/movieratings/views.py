@@ -5,7 +5,7 @@ from .models import Movie, Rating, Rater
 from django.views import generic
 
 
-class IndexView(generic.ListView):
+class IndexView(models.Model):
     template_name = 'movieratings/index.html'
 
     def index(self):
