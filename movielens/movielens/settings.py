@@ -28,7 +28,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+FIXTURE_DIRS = [
+    '/movielens/movielens/fixtures'
+]
 # Application definition
 
 INSTALLED_APPS = [
