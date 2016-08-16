@@ -15,15 +15,21 @@ class MovieDetail(generic.DetailView):
     model = Movie
     template_name = 'movieratings/movie_detail.html'
 
-    def get_queryset(self):
-        return
+    def get_object(self):
+        return get_object_or_404(Movie, pk=self.kwargs.get("pk")
 
-class AllMovies(generic.ListView):
+class AllMovies(generic.DetailView):
     template_name = 'movieratings/all_movies.html'
 
     def get_queryset(self):
         return Movie.objects.all()
 
+class RaterDetail(generic.DetailView):
+    model = Rater
+    template_name = 'movieratings/rater_detail.html'
+
+    def get_object(self):
+        return get_object_or_404(Rater, pk=self.kwargs.get("pk")
 
 class TopRated(generic.ListView):
     template_name = 'movieratings/toprated.html'
