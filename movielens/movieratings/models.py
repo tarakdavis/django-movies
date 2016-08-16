@@ -1,4 +1,5 @@
 from django.db import models
+# from movieratings.models import Movie, Rater, Rating
 
 
 class Movie(models.Model):
@@ -21,6 +22,11 @@ class Rater(models.Model):
     def get_allratings_of_rater(name_id):
         all_rater_ratings = Rater.objects.all(id=name_id)
         return all_rater_ratings
+
+    def get_average_rating_of_this_rater(name_id):
+        all_of_his_ratings = Rater.get_allratings_of_rater.objects.filter(name_id)
+        total = sum(all_of_his_ratings) / all_of_his_ratings.objects.all().count()
+        return total
 
 
 class Rating(models.Model):
