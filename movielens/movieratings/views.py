@@ -1,4 +1,6 @@
 from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
+from django.db import models
 from django.http import HttpResponse, HttpResponseRedirect
 from django.db.models import Count, Avg
 from .models import Movie, Rating, Rater
@@ -61,21 +63,21 @@ class MovieDetail(generic.DetailView):
 
 
 class RaterDetail(generic.DetailView):
-    model=Rater
-    template_name='movieratings/rater_detail.html'
+    model = Rater
+    template_name = 'movieratings/rater_detail.html'
 
     def get_object(self):
         return get_object_or_404(Rater, pk=self.kwargs.get("pk"))
 
 
 class TopRated(generic.ListView):
-    template_name='movieratings/toprated.html'
-    context_object_name='toprated'
+    template_name = 'movieratings/toprated.html'
+    context_object_name = 'toprated'
 
     def get_queryset(self):
-        min_num=50
-        movies=Movie.objects.annotate(num_ratings=Count('rating')).filter(num_ratings__gte=min_num)
-        toprated=movies.annotate(avg_rating=Avg('rating__score')).order_by('-avg_rating')[:20]
+        min_num = 50
+        movies = Movie.objects.annotate(num_ratings=Count('rating')).filter(num_ratings__gte=min_num)
+        toprated = movies.annotate(avg_rating=Avg('rating__score')).order_by('-avg_rating')[:20]
         return toprated
 
 # def toprated(request):
