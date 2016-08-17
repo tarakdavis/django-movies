@@ -47,9 +47,10 @@ def read_json(row, json_file):
         }
 
 def main():
-    csv_file = ['../../../ml-1m/movies.dat', 'ml-1m/ratings.dat', 'ml-1m/users.dat']
+    csv_file = ['ml-1m/movies.dat', 'ml-1m/ratings.dat', 'ml-1m/users.dat']
     json_file = ['movies.json', 'ratings.json', 'users.json']
-    read_csv(csv_file[0], json_file[0])
+    for x in range(0, len(csv_file)+1):
+        read_csv(csv_file[x], json_file[x])
 
 if __name__ == '__main__':
     main()
