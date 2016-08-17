@@ -36,7 +36,7 @@ class Rating(models.Model):
     rater = models.ForeignKey(Rater, on_delete=models.CASCADE)
 
     def __str__(self):
-        return ("{}.  {} - {}.  {} - {}.".format(self.score, self.movie_id, self.rater_id))
+        return ("{}.  {} - {}.  {} - {}.".format(self.score, self.movie, self.rater))
 
     # def specific_movie_rating(name_id):
     #     all_movie_ratings = Rating.objects.filter(movie_id=name_id)
