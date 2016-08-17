@@ -5,7 +5,10 @@ from django.db.models import Count, Avg
 from .models import Movie, Rating, Rater
 from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
-#from django.core.context_processors.csrf import csrf
+
+# from django.core.context_processors import csrf
+
+
 
 # ====================== REGISTRATION ============================
 # ====================== REGISTRATION ============================
