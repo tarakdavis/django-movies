@@ -5,7 +5,8 @@
 <h3>Top Rated Movies</h3>
 <ul>
 {% for movie in toprated %}
-  <li>{{movie.title}}: {{movie.avg_rating|floatformat:"2"}}</li>
+<li><a href="{% url 'movieratings:movie_detail' movie.id %}">{{movie.title}}:
+    {{movie.avg_rating|floatformat:"2"}}</a></li>
 {% endfor %}
 </ul>
 {% endblock %}
