@@ -6,7 +6,7 @@ from .models import Movie, Rating, Rater
 from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
 from django.views import View
-
+from django.utils import timezone
 # from django.core.context_processors import csrf
 
 
@@ -45,8 +45,8 @@ class IndexView(View):
 class AllMovies(generic.ListView):
     template_name = 'movieratings/all_movies.html'
 
-    def get_queryset(self):
-        return Movie.objects.all()
+    def get(self, request):
+        return HttpResponse(Movie.objects.all())
 
 
 class MovieDetail(generic.DetailView):
@@ -61,8 +61,14 @@ class RaterDetail(generic.DetailView):
     model = Rater
     template_name = 'movieratings/rater_detail.html'
 
-    def get_object(self):
-        return get_object_or_404(Rater, pk=self.kwargs.get("pk"))
+
+    def get_context_data(self, **kwargs):
+        context = super(RaterDetail, self).get_context_data(**kwargs)
+        context['now'] = timezone.now()
+        return context
+
+    # def get_object(self):
+    #     return get_object_or_404(Rater, pk=self.kwargs.get("pk"))
 
 
 class TopRated(generic.ListView):
