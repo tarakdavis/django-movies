@@ -1,6 +1,7 @@
 from django.db import models
+from django.contrib.auth.models import User
 # from movieratings.models import Movie, Rater, Rating
-
+# from django.contrib.auth import get_user_model
 
 class Movie(models.Model):
     title = models.CharField(max_length=200)
@@ -14,6 +15,7 @@ class Rater(models.Model):
     gender = models.CharField(max_length=2)
     age = models.IntegerField()
     occupation = models.IntegerField()
+    user = models.OneToOneField(User, null=True)
     # zipcode = models.CharField(max_length=10)
 
     def __str__(self):
