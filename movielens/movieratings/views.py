@@ -58,19 +58,12 @@ class MovieDetail(generic.DetailView):
 
     def get_object(self):
         return get_object_or_404(Movie, pk=self.kwargs.get("pk"))
-    # def get(self):
-    #     movie = Movie.objects.filter(Movie.id)
-    #     return movie
-
-    # def example_view(request, name, template_name):
-    #     example = get_object_or_404(Example, name=name)
-    #     return render_to_response(template_name, locals(),
-    #                           context_instance=RequestContext(request))
 
 
 class RaterDetail(generic.DetailView):
-    model = Rater
+    model = Movie
     template_name = 'movieratings/rater_detail.html'
+    context_object_name = 'rater'
 
     def get_object(self):
         return get_object_or_404(Rater, pk=self.kwargs.get("pk"))
