@@ -3,7 +3,11 @@
   <head>
     <title>
       {% block title %}{% endblock %}
+      {% load static %}
+
     </title>
+    <link rel="stylesheet" type="text/css" href="{% static 'movieratings/style.css' %}" />
+
   </head>
   <body>
     {% block body %}{% endblock %}
