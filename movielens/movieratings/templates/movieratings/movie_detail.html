@@ -1,11 +1,14 @@
 {% extends 'movieratings/base.html' %}
 
 {% block body %}
+#you print the f movie and it's raters with ratings
 
-  <ul>
-    {% for movie in all_movies %}
-      <li><a href="{% url 'movie:detail' movie.id %}">{{ movie.title }}</a></li>
-    {% endfor %}
-  </ul>
+<h1>the movie: </h1>
 
 {% endblock %}
+
+<ul>
+  <!-- {%  %} -->
+    <li><a href="{% url 'movie:detail' movie.id %}">{{ movie.title }}</a></li>
+  {% endfor %}
+</ul>
