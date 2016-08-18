@@ -7,7 +7,7 @@ class Movie(models.Model):
     genre = models.CharField(max_length=200)
 
     def __str__(self):
-        return str(self.title, self.genre)
+        return "{}, {}".format(self.title, self.genre)
 
 
 class Rater(models.Model):
@@ -17,7 +17,7 @@ class Rater(models.Model):
     # zipcode = models.CharField(max_length=10)
 
     def __str__(self):
-        return str(self.id, self.gender, self.age, self.occupation)
+        return "{}: {}, {}, {}".format(self.id, self.gender, self.age, self.occupation)
 
     def get_allratings_of_rater(name_id):
         all_rater_ratings = Rater.objects.all(id=name_id)
