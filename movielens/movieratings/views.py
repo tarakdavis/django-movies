@@ -44,9 +44,11 @@ class IndexView(View):
 
 class AllMovies(generic.ListView):
     template_name = 'movieratings/all_movies.html'
+    context_object_name = 'all_movies'
 
-    def get(self, request):
-        return HttpResponse(Movie.objects.all())
+    def get_queryset(self):
+        movies = Movie.objects.order_by('title')
+        return movies
 
 
 class MovieDetail(generic.DetailView):
