@@ -54,23 +54,26 @@ class AllMovies(generic.ListView):
 class MovieDetail(generic.DetailView):
     model = Movie
     template_name = 'movieratings/movie_detail.html'
+    context_object_name = 'movie'
 
     def get_object(self):
         return get_object_or_404(Movie, pk=self.kwargs.get("pk"))
+    # def get(self):
+    #     movie = Movie.objects.filter(Movie.id)
+    #     return movie
+
+    # def example_view(request, name, template_name):
+    #     example = get_object_or_404(Example, name=name)
+    #     return render_to_response(template_name, locals(),
+    #                           context_instance=RequestContext(request))
 
 
 class RaterDetail(generic.DetailView):
     model = Rater
     template_name = 'movieratings/rater_detail.html'
 
-
-    def get_context_data(self, **kwargs):
-        context = super(RaterDetail, self).get_context_data(**kwargs)
-        context['now'] = timezone.now()
-        return context
-
-    # def get_object(self):
-    #     return get_object_or_404(Rater, pk=self.kwargs.get("pk"))
+    def get_object(self):
+        return get_object_or_404(Rater, pk=self.kwargs.get("pk"))
 
 
 class TopRated(generic.ListView):
