@@ -5,8 +5,9 @@
  <ul>{% for each in genres_list %}
     <li>{{ each }}</li>
   {% endfor %}</ul>
+  {{five}}
  <h3>Ratings:</h3>
- <ul>{% for rating in ratings %}
+ <ul>{% for rating in movie.rating_set.all %}
      <li>User # {{rating.rater.id}} gave this movie a: {{rating.score}}</li>
      {% endfor %}</ul>
 
