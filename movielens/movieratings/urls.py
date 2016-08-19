@@ -10,14 +10,7 @@ urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
     url(r'^allmovies', views.AllMovies.as_view(), name='all_movies'),
     url(r'^movie/(?P<pk>[0-9]+)/$', views.MovieDetail.as_view(), name='movie_detail'),
-    url(r'^rater/(?P<pk>[0-9]+)/$', views.RaterDetail.as_view(), name='rater_detail'),
-
-    url(r'^register/', CreateView.as_view(
-            template_name='registration/register.html',
-            form_class=UserCreationForm,
-            success_url='/'
-    )),
-    url(r'^accounts/', include('django.contrib.auth.urls'))
+    url(r'^rater/(?P<pk>[0-9]+)/$', views.RaterDetail.as_view(), name='rater_detail')
     ]
 # user auth urls
 # url(r'^accounts/auth/$', views.auth_view),

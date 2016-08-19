@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-# from movieratings.models import Movie, Rater, Rating
 # from django.contrib.auth import get_user_model
 
 class Movie(models.Model):
@@ -43,6 +42,7 @@ class Rating(models.Model):
 
     def __str__(self):
         return ("Rater: {}, Movie: {}, Score: {}".format(self.rater_id, self.movie.title, self.score))
+
 
     # def specific_movie_rating(name_id):
     #     all_movie_ratings = Rating.objects.filter(movie_id=name_id)
