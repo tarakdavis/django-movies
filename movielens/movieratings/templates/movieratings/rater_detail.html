@@ -3,9 +3,10 @@
 {% block body %}
 
 <h2>
-    {{rater.id}}  
-    {{rater.gender}}
-    {{rater.age}}
-    {{rater.occupation}}
+    Rater # {{rater.id}} is a
+    {{rater.age}} year old
+    {% if rater.gender == 'M' %}male{% endif %}{% if rater.gender == 'F' %}female{% endif %}
+    who works as a
+    {{rater.occupation}}.
 </h2>
 {% endblock %}
