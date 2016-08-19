@@ -1,11 +1,44 @@
 {% extends 'base.html' %}
 
+
+<head>
+</head>
 {% block body %}
-<h3>
-  <ul>
+<body>
+  <div class="container">
+    <a href="#nums" class="btn btn-link"> num </a>
+    <a href="#lA" class="btn btn-link"> A </a>
+    <a href="#lB" class="btn btn-link"> B </a>
+    <a href="#lC" class="btn btn-link"> C </a>
+    <a href="#lD" class="btn btn-link"> D </a>
+    <a href="#lE" class="btn btn-link"> E</a>
+    <a href="#lF" class="btn btn-link"> F </a>
+    <a href="#lG" class="btn btn-link"> G </a>
+    <a href="#lH" class="btn btn-link"> H </a>
+    <a href="#lI" class="btn btn-link"> I </a>
+    <a href="#lJ" class="btn btn-link"> J </a>
+    <a href="#lK" class="btn btn-link"> K </a>
+    <a href="#lL" class="btn btn-link"> L </a>
+    <a href="#lM" class="btn btn-link"> M </a>
+    <a href="#lN" class="btn btn-link"> N </a>
+    <a href="#lO" class="btn btn-link"> O </a>
+    <a href="#lP" class="btn btn-link"> P </a>
+    <a href="#lQ" class="btn btn-link"> Q </a>
+    <a href="#lR" class="btn btn-link"> R </a>
+    <a href="#lS" class="btn btn-link"> S </a>
+    <a href="#lT" class="btn btn-link"> T </a>
+    <a href="#lU" class="btn btn-link"> U </a>
+    <a href="#lV" class="btn btn-link"> V </a>
+    <a href="#lW" class="btn btn-link"> W </a>
+    <a href="#lX" class="btn btn-link"> X </a>
+    <a href="#lY" class="btn btn-link"> Y </a>
+    <a href="#lZ" class="btn btn-link"> Z </a>
+    <div class="divider"></div>
+  <ul id='col'>
     {% for movie in all_movies %}
       <li><a href="{% url 'movieratings:movie_detail' movie.id %}">{{ movie.title }}</a></li>
     {% endfor %}
   </ul>
-</h3>
+</div>
+</body>
 {% endblock %}
