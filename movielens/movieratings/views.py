@@ -4,6 +4,7 @@ from django.db import models
 from django.db.models import Count, Avg
 from .models import Movie, Rating, Rater
 from django.views import generic
+from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.views import View
 from django.utils import timezone
@@ -15,6 +16,19 @@ class IndexView(View):
 
     def get(self, request, *args, **kwargs):
         return HttpResponse('Hello, World!')
+
+
+class AuthView():
+    template_name = 'movieratings/WIP.html'
+
+    def auth_user():
+        user = authenticate(username='john', password='secret')
+        if user is not None:
+            # A backend authenticated the credentials
+        else:
+            # No backend authenticated the credentials
+        return HttpResponse('')
+
 
     # def register(request):
     #     if request.method == 'POST':
@@ -72,7 +86,7 @@ def movie_detail(request, pk):
 
 
 class RaterDetail(generic.DetailView):
-    model = Movie
+    model = Rater
     template_name = 'movieratings/rater_detail.html'
     context_object_name = 'rater'
 
