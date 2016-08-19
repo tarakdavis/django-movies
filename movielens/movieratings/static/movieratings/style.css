@@ -5,3 +5,12 @@ table tr {
 table tr td:first-child::before {
   content: counter(rowNumber);
 }
+
+#col{
+  columns: 3;
+  list-style-type: none;
+}
+
+.divider{
+  margin-top: 10px;
+}

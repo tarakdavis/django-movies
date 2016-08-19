@@ -1,6 +1,9 @@
  {% extends "base.html" %}
  {% block title %}Top Rated Movies{% endblock %}
  {% block body %}
+<head>
+</head>
+<body>
 <div class="container">
     <div class="col-sm-6">
       <h2>Top Rated Movies</h2>
@@ -20,8 +23,9 @@
                     <td>{{movie.avg_rating|floatformat:"2"}}</td>
                 </tr>
                 {% endfor %}
-
             </tbody>
+        </table>
     </div>
 </div>
+</body>
 {% endblock %}
