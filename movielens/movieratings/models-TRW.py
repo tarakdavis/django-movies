@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+# from movieratings.models import Movie, Rater, Rating
 # from django.contrib.auth import get_user_model
 
 class Movie(models.Model):
@@ -39,6 +40,50 @@ class Rating(models.Model):
     def __str__(self):
         return ("{}.  {} - {}.  {} - {}.".format(self.score, self.movie, self.rater))
 
+
+class Occupation(models.Model):
+
+    ACADEMIC = 'academic/educator'
+    ARTIST = 'artist'
+    CLERICAL = 'clerical/admin'
+    COLLEGE = 'college/grad student'
+    CUSTOMER = 'customer service'
+    DOCTOR = 'doctor/health care'
+    EXECUTIVE = 'executive/managerial'
+    FARMER = 'farmer'
+    HOMEMAKER = 'homemaker'
+    STUDENT = 'K-12 student'
+    LAWYER = 'lawyer'
+    PROGRAMMER = 'programmer'
+    RETIRED = 'retired'
+    SALES = 'sales/marketing'
+    SCIENTIST = 'scientist'
+    SELF = 'self-employed'
+    TECHNICIAN = 'technician/engineer'
+    TRADESMAN = 'tradesman/craftsman'
+    UNEMPLOYED = 'unemployed'
+    WRITER = 'writer'
+
+
+    STATUS_CHOICES = ((0, 'other'), (1, 'academic/educator'), (2, 'artist'),
+        (3, 'clerical/admin'), (4, 'college/grad student'), (5, 'customer service'),
+        (6, 'doctor/health care'), (7, 'executive/managerial'), (8, 'farmer'),
+        (9, 'homemaker'), (10, 'K-12 student'), (11, 'lawyer'), (12, 'programmer'),
+        (13, 'retired'), (14, 'sales/marketing'), (15, 'scientist'),
+        (16, 'self-employed'), (17, 'technician/engineer'), (18, 'tradesman/craftsman'),
+        (19, 'unemployed'), (20, 'writer'))
+
+    occupation_word = models.CharField(max_length=44, choices=STATUS_CHOICES)
+
+    rater = models.ForeignKey(Rater, on_delete=models.CASCADE)
+
+    def change_occupation(self):
+            return self.occupation_word
+
+        # all_raters = Rater.objects.all()
+        # for each in all_raters:
+        #     temp = each.occupation
+        #     change = Rater.objects.update(each.occupation = occ_key[temp])
 
     # def specific_movie_rating(name_id):
     #     all_movie_ratings = Rating.objects.filter(movie_id=name_id)

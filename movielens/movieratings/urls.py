@@ -1,6 +1,7 @@
 from django.conf.urls import url, include
-from django.contrib.auth.views import login, logout
 from . import views
+from django.views.generic.edit import CreateView
+from django.contrib.auth.forms import UserCreationForm
 
 app_name = 'movieratings'
 urlpatterns = [
@@ -8,14 +9,12 @@ urlpatterns = [
     url(r'^toprated', views.TopRated.as_view(), name='toprated'),
     url(r'^$', views.IndexView.as_view(), name='index'),
     url(r'^allmovies', views.AllMovies.as_view(), name='all_movies'),
-    url(r'^movie/(?P<pk>[0-9]+)/$', views.movie_detail, name='movie_detail'),
+    url(r'^movie/(?P<pk>[0-9]+)/$', views.MovieDetail.as_view(), name='movie_detail'),
     url(r'^rater/(?P<pk>[0-9]+)/$', views.RaterDetail.as_view(), name='rater_detail')
-]
-     # Registration URLs
-#     url(r'^accounts/register/$', views.register, name='register'),
-#     url(r'^accounts/register/complete/$', views.registration_complete, name='registration_complete'),
-#             # Auth-related URLs:
-#     url(r'^accounts/login/$', login, name='login'),
-#     url(r'^accounts/logout/$', logout, name='logout'),
-#     url(r'^accounts/loggedin/$', views.loggedin, name='loggedin'),
-# ]
+    ]
+# user auth urls
+# url(r'^accounts/auth/$', views.auth_view),
+# url(r'^accounts/login/$', views.signin),
+# url(r'^accounts/logout/$', views.signout, {'next_page': '/accounts/signin'})]
+# url(r'^accounts/loggedin/$', views.signedin),
+# url(r'^accounts/invalid/$', views.invalid_login)]
