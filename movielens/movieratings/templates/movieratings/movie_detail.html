@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% block title %}{{movie.title}}{% endblock %}
 {% block body %}
-
+<h2>
   {{movie.title}}
-  {{movie.genre}}
+  {% for each in genres_list %}
+    {{ each }}
+  {% endfor %}
+  </h2>
 {% endblock %}
-<!-- yo wuddup -->
