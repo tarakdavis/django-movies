@@ -51,13 +51,13 @@ class AllMovies(generic.ListView):
         return movies
 
 
-class MovieDetail(generic.DetailView):
-    model = Movie
-    template_name = 'movieratings/movie_detail.html'
-    context_object_name = 'movie'
-
-    def get_object(self):
-        return get_object_or_404(Movie, pk=self.kwargs.get("pk"))
+def movie_detail(request, pk):
+    movie = get_object_or_404(Movie, pk=pk)
+    ratings = movie.rating_set.all()
+    avg_rating = ratings.aggregate(Avg('score'))['score__avg']
+    context = {'movie': movie, 'ratings': ratings,
+               'avg_rating': avg_rating}
+    return render(request, 'movieratings/movie_detail.html', context)
 
 
 # class MovieGenreDetail(generic.DetailView):

@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 {% block title %}{{movie.title}}{% endblock %}
 {% block body %}
-<h2>
-  {{movie.title}}
-  {% for each in genres_list %}
-    {{ each }}
-  {% endfor %}
-  </h2>
+<h2>{{movie.title}} has an avgerage rating of: {{avg_rating|floatformat:"2"}}</h2>
+ <ul>{% for each in genres_list %}
+    <li>{{ each }}</li>
+  {% endfor %}</ul>
+ <h3>Ratings:</h3>
+ <ul>{% for rating in ratings %}
+     <li>User # {{rating.rater.id}} gave this movie a: {{rating.score}}</li>
+     {% endfor %}</ul>
+
+
 {% endblock %}
