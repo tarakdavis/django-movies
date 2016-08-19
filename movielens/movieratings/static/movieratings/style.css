@@ -14,3 +14,16 @@ table tr td:first-child::before {
 .divider{
   margin-top: 10px;
 }
+
+h4{
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+h5{
+  margin-left: 40px;
+}
+
+.panel {
+  margin-left: 30px;
+}

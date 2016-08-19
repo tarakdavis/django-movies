@@ -1,12 +1,28 @@
 {% extends 'base.html' %}
+<head>
 {% block title %}{{rater.user}}{% endblock %}
-{% block body %}
+</head>
 
-<h2>
-    Rater # {{rater.id}} is a
-    {{rater.age}} year old
-    {% if rater.gender == 'M' %}male{% endif %}{% if rater.gender == 'F' %}female{% endif %}
-    who works as a
-    {{rater.occupation}}.
-</h2>
+<body>
+{% block body %}
+<div class="container">
+<h2> Rater # {{rater.id}}</h2>
+  <div class="col-sm-4">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title"> Personal Information </h3>
+    </div>
+    <div class="panel-body">
+      <h5> Age: {{rater.age}} year old <h5>
+      <h5> Gender:
+      {% if rater.gender == 'M' %}male{% endif %}
+      {% if rater.gender == 'F' %}female{% endif %}
+      </h5>
+      <h5> Occupation: {{rater.occupation}} </h5>
+    </div>
+    </div>
+  </div>
+
+</div>
 {% endblock %}
+</body>
