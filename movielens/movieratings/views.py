@@ -60,6 +60,17 @@ class MovieDetail(generic.DetailView):
         return get_object_or_404(Movie, pk=self.kwargs.get("pk"))
 
 
+# class MovieGenreDetail(generic.DetailView):
+#     model = Movie
+#     template_name = 'movieratings/movie_detail.html'
+#     context_object_name = 'movie'
+#
+    # def get_each_genre(self):
+    #     genres = Movie.genre
+    #     genres_list = genres.split('|')
+    #     return genres_list
+
+
 class RaterDetail(generic.DetailView):
     model = Movie
     template_name = 'movieratings/rater_detail.html'
