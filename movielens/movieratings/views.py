@@ -24,9 +24,9 @@ class AuthView():
     def auth_user():
         user = authenticate(username='john', password='secret')
         if user is not None:
-            # A backend authenticated the credentials
+            pass  # A backend authenticated the credentials
         else:
-            # No backend authenticated the credentials
+            pass  # No backend authenticated the credentials
         return HttpResponse('')
 
 
