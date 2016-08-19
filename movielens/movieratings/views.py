@@ -51,14 +51,29 @@ class AllMovies(generic.ListView):
         return movies
 
 
-def movie_detail(request, pk):
-    movie = get_object_or_404(Movie, pk=pk)
-    ratings = movie.rating_set.all()
-    avg_rating = ratings.aggregate(Avg('score'))['score__avg']
-    context = {'movie': movie, 'ratings': ratings,
-               'avg_rating': avg_rating}
-    return render(request, 'movieratings/movie_detail.html', context)
+# def movie_detail(request, pk):
+#     movie = get_object_or_404(Movie, pk=pk)
+#     ratings = movie.rating_set.all()
+#     avg_rating = ratings.aggregate(Avg('score'))['score__avg']
+#     context = {'movie': movie, 'ratings': ratings,
+#                'avg_rating': avg_rating}
+#     return render(request, 'movieratings/movie_detail.html', context)
 
+class MovieDetail(generic.DetailView):
+    model = Movie
+    template_name = 'movieratings/movie_detail.html'
+    # context_object_name = 'movie'
+    #
+    def get_context_data(self, *args, **kwargs):
+        ctx = super(MovieDetail, self).get_context_data(*args, **kwargs)
+        ratings = self.get_object().rating_set.all()
+        ctx['avg_rating'] = ratings.aggregate(Avg('score'))['score__avg']
+        ctx['five'] = len(ratings.filter(score=5))
+        ctx['four'] = len(ratings.filter(score=4))
+        ctx['three'] = len(ratings.filter(score=3))
+        ctx['two'] = len(ratings.filter(score=2))
+        ctx['one'] = len(ratings.filter(score=1))
+        return ctx
 
 # class MovieGenreDetail(generic.DetailView):
 #     model = Movie
