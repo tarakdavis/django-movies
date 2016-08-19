@@ -8,7 +8,7 @@ class Movie(models.Model):
     genre = models.CharField(max_length=200)
 
     def __str__(self):
-        return "{}, {}".format(self.title, self.genre)
+        return "{}".format(self.title)
 
 
 class Rater(models.Model):
@@ -21,14 +21,18 @@ class Rater(models.Model):
     def __str__(self):
         return "{}: {}, {}, {}".format(self.id, self.gender, self.age, self.occupation)
 
-    def get_allratings_of_rater(name_id):
-        all_rater_ratings = Rater.objects.all(id=name_id)
-        return all_rater_ratings
-
-    def get_average_rating_of_this_rater(name_id):
-        all_of_his_ratings = Rater.get_allratings_of_rater.objects.filter(name_id)
-        total = sum(all_of_his_ratings) / all_of_his_ratings.objects.all().count()
-        return total
+    # def get_allratings_of_rater(name_id):
+    #     all_rater_ratings = Rater.objects.all(id=name_id)
+    #     return all_rater_ratings
+    #
+    # def get_average_rating_of_this_rater(name_id):
+    #     all_of_his_ratings = Rater.get_allratings_of_rater.objects.filter(name_id)
+    #     total = sum(all_of_his_ratings) / all_of_his_ratings.objects.all().count()
+    #     return total
+    def movies_rated(self):
+        rated = Movie.objects.filter(movie__in=self.rating_set)
+        return rated
+    # def reco_top_rated(self):
 
 
 class Rating(models.Model):
@@ -38,7 +42,7 @@ class Rating(models.Model):
     rater = models.ForeignKey(Rater, on_delete=models.CASCADE)
 
     def __str__(self):
-        return ("{}.  {} - {}.  {} - {}.".format(self.score, self.movie, self.rater))
+        return ("Rater: {}, Movie: {}, Score: {}".format(self.rater_id, self.movie.title, self.score))
 
     # def specific_movie_rating(name_id):
     #     all_movie_ratings = Rating.objects.filter(movie_id=name_id)
