@@ -24,5 +24,11 @@
   </div>
 
 </div>
+<h3>Recommended for you:</h3>
+<h4>Critically Acclaimed Movies:</h4>
+<ul>{% for movie in toprated %}
+<li>{{movie.title}}: {{movie.avg_rating}}</li>
+{% endfor %}
+</ul>
 {% endblock %}
 </body>
