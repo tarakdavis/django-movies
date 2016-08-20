@@ -52,5 +52,6 @@ h5{
  }
 
 .col2{
-  columns: 2;
+  columns: 4;
+  margin-top: 40px;
 }
