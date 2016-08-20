@@ -23,7 +23,7 @@
                 <li><a href="#"> One <span class="badge">{{one}}</span></a></li>
             </ul>
             <div class="col2">
-            <ul class="col2">{% for rating in movie.rating_set.all %}
+            <ul g>{% for rating in movie.rating_set.all %}
                 <li id="type"><a href="{% url 'movieratings:rater_detail' rating.rater.id %}">User # {{rating.rater.id}} gave this movie a: {{rating.score}}</a></li>
                 {% endfor %}</ul>
               </div>
