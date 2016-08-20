@@ -17,7 +17,7 @@ table tr td:first-child::before {
 
 h4{
   margin-top: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 h5{
@@ -32,3 +32,7 @@ h5{
  #type{
    list-style-type: none;
  }
+
+.col2{
+  columns: 2;
+}
