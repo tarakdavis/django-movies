@@ -1,5 +1,16 @@
 {% extends "base.html" %}
+
+
 {% block body %}
-{% csrf_token %}
-{{form}}
-{% endblock %}
+<body>
+  <div class="container">
+  <form>
+    <h2>Register</h2>
+  {% csrf_token %}
+    <div class"form-group">
+    {{form.as_p}}
+  </div>
+    <button type="submit" class="btn btn-primary" value="Register">Submit</button>
+  {% endblock %}
+  </form>
+</body>
