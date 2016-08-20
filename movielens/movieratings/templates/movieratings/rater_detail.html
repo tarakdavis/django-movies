@@ -15,8 +15,8 @@
     <div class="panel-body">
       <h5> Age Bracket: {{age_bracket}} years old <h5>
       <h5> Gender:
-      {% if rater.gender == 'M' %}male{% endif %}
-      {% if rater.gender == 'F' %}female{% endif %}
+      {% if rater.gender == 'M' %}Male{% endif %}
+      {% if rater.gender == 'F' %}Female{% endif %}
       </h5>
       <h5> Occupation: {{occupation}} </h5>
     </div>
@@ -27,7 +27,7 @@
 <h3>Recommended for you:</h3>
 <h4>Critically Acclaimed Movies:</h4>
 <ul>{% for movie in toprated %}
-<li>{{movie.title}}: {{movie.avg_rating}}</li>
+<li><a href="{% url 'movieratings:movie_detail' movie.id %}">{{movie.title}}</a>: {{movie.avg_rating|floatformat:"2"}}</li>
 {% endfor %}
 </ul>
 {% endblock %}
