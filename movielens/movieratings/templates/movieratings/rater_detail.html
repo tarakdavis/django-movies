@@ -42,6 +42,11 @@
       {% endfor %}
       </ul>
     </div>
+<h3>Top picks for you:</h3>
+<ul>{% for movie in picks %}
+  <li>{{movie.title}}</li>
+  {% endfor %}
+</ul>
 {% endblock %}
 </div>
 </div>
