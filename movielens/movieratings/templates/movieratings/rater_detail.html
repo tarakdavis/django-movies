@@ -7,22 +7,42 @@
 {% block body %}
 <div class="container">
 <h2> Rater # {{rater.id}}</h2>
+</div>
+<div class="container">
   <div class="col-sm-4">
   <div class="panel panel-primary">
     <div class="panel-heading">
       <h3 class="panel-title"> Personal Information </h3>
     </div>
     <div class="panel-body">
-      <h5> Age: {{rater.age}} years old <h5>
+      <h5> Age Bracket: {{age_bracket}} years old <h5>
       <h5> Gender:
-      {% if rater.gender == 'M' %}male{% endif %}
-      {% if rater.gender == 'F' %}female{% endif %}
+      {% if rater.gender == 'M' %}Male{% endif %}
+      {% if rater.gender == 'F' %}Female{% endif %}
       </h5>
-      <h5> Occupation: {{rater.occupation}} </h5>  <!-- {{rater.occupation_word(rater.occupation) }} -->
+      <h5> Occupation: {{occupation}} </h5>
     </div>
     </div>
   </div>
 
-</div>
+  <!-- <ul id='col2'>
+    {% for rating in movie.rating_set.all %}
+      <li><a href="{% url 'movieratings:movie_detail' movie.id %}">{{ rating.movie.id}} {{rating.score}}</a></li>
+    {% endfor %}
+  </ul> -->
+
+<div class="col-sm-6">
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <h3 class="panel-title">Recommended for you:</h3>
+    </div>
+    <div class="panel-body">
+      <ul id="type">{% for movie in toprated %}
+      <li><a href="{% url 'movieratings:movie_detail' movie.id %}">{{movie.title}}</a>: {{movie.avg_rating|floatformat:"2"}}</li>
+      {% endfor %}
+      </ul>
+    </div>
 {% endblock %}
+</div>
+</div>
 </body>
