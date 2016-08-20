@@ -13,12 +13,12 @@
       <h3 class="panel-title"> Personal Information </h3>
     </div>
     <div class="panel-body">
-      <h5> Age: {{rater.age}} years old <h5>
+      <h5> Age Bracket: {{age_bracket}} years old <h5>
       <h5> Gender:
       {% if rater.gender == 'M' %}Male{% endif %}
       {% if rater.gender == 'F' %}Female{% endif %}
       </h5>
-      <h5> Occupation: {{rater.occupation}} </h5>
+      <h5> Occupation: {{occupation}} </h5>
     </div>
     </div>
   </div>
@@ -28,5 +28,11 @@
     {% endfor %}
   </ul>
 </div>
+<h3>Recommended for you:</h3>
+<h4>Critically Acclaimed Movies:</h4>
+<ul>{% for movie in toprated %}
+<li>{{movie.title}}: {{movie.avg_rating}}</li>
+{% endfor %}
+</ul>
 {% endblock %}
 </body>

@@ -23,9 +23,40 @@ class Rater(models.Model):
     def movies_not_rated(self):
         return Movie.objects.exclude(id__in=self.rating_set.all())
 
-    def occupation_word(num):
-        occupation_word = ((0, 'other'), (1, 'academic/educator'), (2, 'artist'), (3, 'clerical/admin'), (4, 'college/grad student'), (5, 'customer service'), (6, 'doctor/health care'), (7, 'executive/managerial'), (8, 'farmer'), (9, 'homemaker'), (10, 'K-12 student'), (11, 'lawyer'), (12, 'programmer'), (13, 'retired'), (14, 'sales/marketing'), (15, 'scientist'), (16, 'self-employed'), (17, 'technician/engineer'), (18, 'tradesman/craftsman'), (19, 'unemployed'), (20, 'writer'))
-        return occupation_word[num]
+    def occupation_word(self):
+        context_tuple = ((0, 'other'),
+                         (1, 'academic/educator'),
+                         (2, 'artist'),
+                         (3, 'clerical/admin'),
+                         (4, 'college/grad student'),
+                         (5, 'customer service'),
+                         (6, 'doctor/health care'),
+                         (7, 'executive/managerial'),
+                         (8, 'farmer'),
+                         (9, 'homemaker'),
+                         (10, 'K-12 student'),
+                         (11, 'lawyer'),
+                         (12, 'programmer'),
+                         (13, 'retired'),
+                         (14, 'sales/marketing'),
+                         (15, 'scientist'),
+                         (16, 'self-employed'),
+                         (17, 'technician/engineer'),
+                         (18, 'tradesman/craftsman'),
+                         (19, 'unemployed'),
+                         (20, 'writer'))
+        return context_tuple[self.occupation][1]
+
+    def age_bracket(self):
+        context_dictionary = {1: "Under 18",
+                              18: "18-24",
+                              25: "25-34",
+                              35: "35-44",
+                              45: "45-49",
+                              50: "50-55",
+                              56: "56+"}
+
+        return context_dictionary[self.age]
 
 
 class Rating(models.Model):
