@@ -6,6 +6,7 @@
         {% block title %}{% endblock %} {% load static %}
 
     </title>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cyborg/bootstrap.min.css" charset="utf-8">
     <link rel="stylesheet" type="text/css" href="{% static 'movieratings/style.css' %}" />
 
@@ -45,7 +46,11 @@
             </div>
         </div>
     </nav>
-    {% block body %}{% endblock %}
+
+{% block body %}
+{% endblock %}
 </body>
-<script type="text/javascript" src="{% static 'movieratings/style.js' %}"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" scr="{% static 'movieratings/style.js' %}"></script>
+
 </html>
