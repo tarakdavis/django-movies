@@ -14,44 +14,17 @@
   {% endfor %}</ul>
 
  <h4>Ratings:</h4>
- <div class="btn-group">
-   <a href="#" class="activecs"> Five <span class="badge"> {{ five }} </span></a>
-   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
-   <ul class="dropdown-menu">
-     <li><a href="#">Action</a></li>
-   </ul>
- </div>
- <div class="btn-group">
-   <a href="#" class="active"> Four  <span class="badge"> {{ four }} </span></a>
-   <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
-   <ul class="dropdown-menu"><li><a href="#">Action</a></li>
-   </ul>
- </div>
- <div class="btn-group">
-   <a href="#" class="active"> Three  <span class="badge"> {{ three }} </span></a>
-   <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
-   <ul class="dropdown-menu">
-     <li><a href="#">Action</a></li>
-   </ul>
- </div>
- <div class="btn-group">
-   <a href="#" class="active"> Two  <span class="badge"> {{ two }} </span></a>
-   <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
-   <ul class="dropdown-menu">
-     <li><a href="#">Action</a></li>
-   </ul>
- </div>
- <div class="btn-group">
-   <a href="#" class="active"> One  <span class="badge"> {{ one }} </span></a>
-   <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
-   <ul class="dropdown-menu">
-     <li><a href="#">Action</a></li>
-   </ul>
+  <ul>
+    <li class="dropdown">
+      <a href="#" data-toggle="dropdown"> Five <i class="caret"></i></a>
+      <ul class="dropdown-menu">{% for rating in movie.rating_set.all %}
+        <li><a/ href="{% url 'movieratings:rater_detail' movie.id %}"> {{ rating.rater.id}}</a></li>
+        {% endfor %}</ul>
  </div>
 
 
  <ul>{% for rating in movie.rating_set.all %}
-     <li>User # {{rating.rater.id}} gave this movie a: {{rating.score}}</li>
+     <li><a href="{% url 'movieratings:rater_detail' rating.rater.id %}">User # {{rating.rater.id}} gave this movie a: {{rating.score}}</a></li>
      {% endfor %}</ul>
 </div>
 </body>
