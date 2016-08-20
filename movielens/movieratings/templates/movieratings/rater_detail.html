@@ -22,7 +22,11 @@
     </div>
     </div>
   </div>
-
+  <ul id='col'>
+    {% for rating in movie.rating_set.all %}
+      <li><a href="{% url 'movieratings:movie_detail' movie.id %}">{{ rating.movie.id}} {{rating.score}}</a></li>
+    {% endfor %}
+  </ul>
 </div>
 <h3>Recommended for you:</h3>
 <h4>Critically Acclaimed Movies:</h4>
