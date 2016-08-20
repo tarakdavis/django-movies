@@ -20,6 +20,11 @@ def load_data(apps, schema_editor):
             all_movies[temp.id] = temp
             temp.save()
 
+    # with open('../ml-1m/users.dat') as occupation:
+    #     reader = csv.reader(raters, delimiter='+')
+    #     for row in reader:
+    #         temp = Rater(
+
     with open('../ml-1m/users.dat') as raters:
         reader = csv.reader(raters, delimiter='+')
         for row in reader:
@@ -27,6 +32,7 @@ def load_data(apps, schema_editor):
                 id=int(row[0]),
                 gender=row[1],
                 age=int(row[2]),
+                # occupation=Occupation.objects.get(id=int(row[3]))
                 occupation=int(row[3]))
             all_raters[temp.id] = temp
             temp.save()

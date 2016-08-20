@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.db import models
 from django.db.models import Count, Avg
 from .models import Movie, Rating, Rater
+from django.contrib.auth import authenticate
 from django.views import View, generic
 from django.contrib.auth.forms import UserCreationForm
 from django.utils import timezone
@@ -10,12 +11,49 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
 
-
 class IndexView(View):
     template_name = 'movieratings/index.html'
 
     def get(self, request, *args, **kwargs):
         return HttpResponse('Hello, World!')
+
+
+class AuthView():
+    template_name = 'movieratings/WIP.html'
+
+    def auth_user():
+        user = authenticate(username='john', password='secret')
+        if user is not None:
+            pass  # A backend authenticated the credentials
+        else:
+            pass  # No backend authenticated the credentials
+        return HttpResponse('')
+
+
+    # def register(request):
+    #     if request.method == 'POST':
+    #         form = UserCreationForm(request.POST)
+    #         if form.is_valid():
+    #             form.save()
+    #             return HttpResponseRedirect('/accounts/register/complete')
+    #
+    #     else:
+    #         form = UserCreationForm()
+    #     token = {}
+    #     token.update(csrf(request))
+    #     token['form'] = form
+    #
+    #     return render_to_response('registration/registration_form.html', token)
+    #
+    #
+    # def registration_complete(request):
+    #     return render_to_response('registration/registration_complete.html')
+    #
+    #
+    # #                   ==== login ====
+    # def loggedin(request):
+    #     return render_to_response('registration/loggedin.html',
+    #                               {'username': request.user.username})
 
 
 class AllMovies(generic.ListView):
@@ -39,7 +77,7 @@ class MovieDetail(generic.DetailView):
     model = Movie
     template_name = 'movieratings/movie_detail.html'
     # context_object_name = 'movie'
-    #
+
     def get_context_data(self, *args, **kwargs):
         ctx = super(MovieDetail, self).get_context_data(*args, **kwargs)
         ratings = self.get_object().rating_set.all()
@@ -63,7 +101,7 @@ class MovieDetail(generic.DetailView):
 
 
 class RaterDetail(generic.DetailView):
-    model = Movie
+    model = Rater
     template_name = 'movieratings/rater_detail.html'
     context_object_name = 'rater'
 
