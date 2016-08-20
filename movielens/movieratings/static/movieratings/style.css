@@ -21,11 +21,14 @@ h4{
 }
 
 h5{
-  margin-left: 40px;
+  font-size: 15px;
+  margin-left: 30px;
 }
 
 .panel {
   margin-left: 30px;
 }
 
- 
+ #type{
+   list-style-type: none;
+ }
