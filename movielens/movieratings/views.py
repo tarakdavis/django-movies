@@ -143,8 +143,15 @@ class RaterDetail(generic.DetailView):
     template_name = 'movieratings/rater_detail.html'
     context_object_name = 'rater'
 
-    def get_object(self):
-        return get_object_or_404(Rater, pk=self.kwargs.get("pk"))
+    def get_context_data(self, *args, **kwargs):
+        ctx = super(RaterDetail, self).get_context_data(*args, **kwargs)
+        movies = self.get_object().movies_not_rated().annotate(num_ratings=Count('rating')).filter(num_ratings__gte=50)
+        toprated = movies.annotate(avg_rating=Avg('rating__score')).order_by('-avg_rating')[:5]
+        occupation = self.get_object().occupation_word()
+        ctx['occupation'] = occupation
+        ctx['toprated'] = toprated
+        ctx['age_bracket'] = self.get_object().age_bracket()
+        return ctx
 
 
 class TopRated(generic.ListView):

@@ -1,3 +1,21 @@
+.slide1, .slide2, .slide3 {
+    height: 500px;
+
+    background-size: cover;
+    background-position: center bottom;
+}
+
+.slide1 {
+    background-image: url(http://brainprick.com/wp-content/uploads/2014/03/The-Shawshank-Redemption1.jpg);
+}
+.slide2 {
+    background-image: url(https://themarckoguy.files.wordpress.com/2015/08/movie_classical_schindler_s_list_hands_movie_123903_1366x768.jpg);
+    background-position: center top;
+}
+.slide3 {
+    background-image: url(https://i.ytimg.com/vi/j1pf6s8MGrs/maxresdefault.jpg);
+}
+
 
 table tr {
   counter-increment: rowNumber;
@@ -17,13 +35,23 @@ table tr td:first-child::before {
 
 h4{
   margin-top: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 h5{
-  margin-left: 40px;
+  font-size: 15px;
+  margin-left: 30px;
 }
 
 .panel {
   margin-left: 30px;
+}
+
+ #type{
+   list-style-type: none;
+ }
+
+.col2{
+  columns: 4;
+  margin-top: 40px;
 }
