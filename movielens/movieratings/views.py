@@ -112,6 +112,7 @@ class RaterDetail(generic.DetailView):
         occupation = self.get_object().occupation_word()
         ctx['occupation'] = occupation
         ctx['toprated'] = toprated
+        ctx['age_bracket'] = self.get_object().age_bracket()
         return ctx
 
 

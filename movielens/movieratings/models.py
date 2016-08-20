@@ -47,6 +47,17 @@ class Rater(models.Model):
                          (20, 'writer'))
         return context_tuple[self.occupation][1]
 
+    def age_bracket(self):
+        context_dictionary = {1: "Under 18",
+                              18: "18-24",
+                              25: "25-34",
+                              35: "35-44",
+                              45: "45-49",
+                              50: "50-55",
+                              56: "56+"}
+
+        return context_dictionary[self.age]
+
 
 class Rating(models.Model):
     score = models.IntegerField()
