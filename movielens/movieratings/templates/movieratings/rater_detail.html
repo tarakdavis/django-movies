@@ -15,14 +15,18 @@
     <div class="panel-body">
       <h5> Age: {{rater.age}} years old <h5>
       <h5> Gender:
-      {% if rater.gender == 'M' %}male{% endif %}
-      {% if rater.gender == 'F' %}female{% endif %}
+      {% if rater.gender == 'M' %}Male{% endif %}
+      {% if rater.gender == 'F' %}Female{% endif %}
       </h5>
-      <h5> Occupation: {{rater.occupation}} </h5>  <!-- {{rater.occupation_word(rater.occupation) }} -->
+      <h5> Occupation: {{rater.occupation}} </h5>
     </div>
     </div>
   </div>
-
+  <ul id='col'>
+    {% for rating in movie.rating_set.all %}
+      <li><a href="{% url 'movieratings:movie_detail' movie.id %}">{{ rating.movie.id}} {{rating.score}}</a></li>
+    {% endfor %}
+  </ul>
 </div>
 {% endblock %}
 </body>
