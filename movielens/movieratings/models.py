@@ -23,6 +23,9 @@ class Rater(models.Model):
     def movies_not_rated(self):
         return Movie.objects.exclude(id__in=self.rating_set.all())
 
+    def favorite_movies(self):
+        return Movie.objects.filter(id__in=self.rating_set.filter(score=5))
+
     def occupation_word(self):
         context_tuple = ((0, 'other'),
                          (1, 'academic/educator'),
