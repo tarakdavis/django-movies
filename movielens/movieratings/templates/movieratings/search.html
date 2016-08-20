@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block body %}
+<ul>
+  {% for result in search_results %}
+  <li>
+    <a href="movieratings/movie/{{ result.id }}">{{ result }}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

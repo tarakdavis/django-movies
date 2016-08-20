@@ -26,6 +26,5 @@ urlpatterns = [
             success_url='/'
     )),
     url(r'^accounts/', include('django.contrib.auth.urls')),
-    url(r'^movieratings/', include('movieratings.urls')),
-
+    url(r'^movieratings/', include('movieratings.urls'))
 ]

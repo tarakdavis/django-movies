@@ -1,5 +1,18 @@
 {% extends "base.html" %}
-{% block body %}
 {% csrf_token %}
-{{form}}
+
+{% block title %}
+<h2>Register</h2>
+{% endblock %}
+
+{% block body %}
+<form method="post" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form layout='inline' %}
+    {% buttons %}
+    <button type="submit" class="btn btn-primary">
+      {% bootstrap_icon "user" %} Register
+    </button>
+    {% endbuttons %} 
+</form>
 {% endblock %}
