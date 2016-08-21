@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block body %}
+<body>
+  <div class="container">
+  <h2>Submit New Rating For This Movie:</h2>
+  <form>
+    {% csrf_token %}
+    <div class"form-group">
+      {{form.as_p}}
+  Rater ID:
+  <input type="text" name="id"><br>
+  Movie Title:
+  <input type="text" name="title"><br>
+  Score (1-5):
+  <input type="text" name="score"><br>
+  <button type="submit" class="btn btn-primary" value="New_Rating">Submit</button>
+  </div>
+</form>
+
+{% endblock %}
+</body>

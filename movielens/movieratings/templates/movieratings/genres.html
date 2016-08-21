@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+<head>
+</head>
+{% block body %}
+<body>
+  <div class="container">
+    <div class="divider"></div>
+  <ul id='col'>
+    {% for movie in genre_results %}
+        <li><a href="{% url 'movieratings:movie_detail' movie.id %}">{{ movie.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+</body>
+{% endblock %}

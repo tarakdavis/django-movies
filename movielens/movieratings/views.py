@@ -8,10 +8,9 @@ from django.views import View, generic
 from django.contrib.auth.forms import UserCreationForm
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-# from django.db.models import Q
+from django.db.models import Q
 
 
-# working on pulling up actual movie and not a blank movie detail page
 class SearchView(generic.ListView):
     model = Movie
     select_related = ['title']
@@ -20,9 +19,24 @@ class SearchView(generic.ListView):
 
     def get_queryset(self):
         query = self.request.GET.get("q")
-        if query:
+        if query == '':
+            HttpResponse('Your search was empty, try again!')
+        elif query:
             searched_movies = self.model.objects.filter(title__icontains=query)
             return searched_movies
+
+
+# class GenreView(generic.ListView):
+#     model = Movie
+#     select_related = ['genre']
+#     template_name = 'movieratings/genres.html'
+#     context_object_name = 'genre_results'
+#
+#     def get_queryset(self):
+#         query = self.request.GET.get("q")
+#         if query:
+#             searched_genre = self.model.objects.filter(genre__icontains=query)
+#             return searched_genre
 
 
 class IndexView(View):
@@ -140,6 +154,14 @@ class RaterDetail(generic.DetailView):
         ctx['age_bracket'] = rater.age_bracket()
         return ctx
 
+# class NewRating(generic.ListView):
+#     template_name = 'movieratings/newrating.html'
+#     context_object_name = 'new_rating'
+#     model = Rating
+#
+#     def get(self, request, *args, **kwargs):
+#         ctx = model.objects.all()
+#         return ctx
 
 class TopRated(generic.ListView):
     template_name = 'movieratings/toprated.html'
