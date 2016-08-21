@@ -19,8 +19,8 @@ footer{
     background-image: url(https://i.ytimg.com/vi/j1pf6s8MGrs/maxresdefault.jpg);
 }
 
-h2{
-  color: #60D394;
+h2 {
+  color: #C40000;
 }
 
 table tr {
@@ -52,8 +52,4 @@ h5{
 
 .panel {
   margin-left: 30px;
-}
-
-.btn.btn-link{
-  color: red;
 }
