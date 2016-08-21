@@ -8,7 +8,7 @@ from django.views import View, generic
 from django.contrib.auth.forms import UserCreationForm
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
+# from django.db.models import Q
 
 
 # working on pulling up actual movie and not a blank movie detail page
@@ -101,6 +101,11 @@ class MovieDetail(generic.DetailView):
         ctx['three'] = len(ratings.filter(score=3))
         ctx['two'] = len(ratings.filter(score=2))
         ctx['one'] = len(ratings.filter(score=1))
+        ctx['r_five'] = ratings.filter(score=5)
+        ctx['r_four'] = ratings.filter(score=4)
+        ctx['r_three'] = ratings.filter(score=3)
+        ctx['r_two'] = ratings.filter(score=2)
+        ctx['r_one'] = ratings.filter(score=1)
         return ctx
 
 # class MovieGenreDetail(generic.DetailView):
@@ -121,11 +126,13 @@ class RaterDetail(generic.DetailView):
 
     def get_context_data(self, *args, **kwargs):
         ctx = super(RaterDetail, self).get_context_data(*args, **kwargs)
-        rater = self.get_object()
+        rater = self.object
         favorite_genres = rater.favorite_genres()
-        movies = rater.movies_not_rated().annotate(num_ratings=Count('rating')).filter(num_ratings__gte=50)
+        print(favorite_genres)
+        movies = rater.movies_not_rated().annotate(num_rat=Count('rating')).filter(num_rat__gte=50)
         toprated = movies.annotate(avg_rating=Avg('rating__score')).order_by('-avg_rating')
-        preferred_genre = toprated.filter(Q(genre__contains=favorite_genres[0])|Q(genre__contains=favorite_genres[1])|Q(genre__contains=favorite_genres[2]))
+        preferred_genre = toprated.filter(Q(genre__contains=favorite_genres[0]))
+        #|Q(genre__contains=favorite_genres[1])|Q(genre__contains=favorite_genres[2]))
         occupation = rater.occupation_word()
         ctx['occupation'] = occupation
         ctx['toprated'] = toprated[:5]
