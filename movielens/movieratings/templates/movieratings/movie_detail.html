@@ -12,17 +12,28 @@
         <h4>{{ movie.genre }}</h4>
 
         <h4> Average rating: {{avg_rating|floatformat:"2"}}</h4>
-        
+
+      <ul>{% for r in r_five %}
+        <li><a> {{ rater.id }}</a></li>
+        {% endfor %}</ul>
+
+
         <h4>Ratings:</h4>
+        </li>
             <ul class="nav nav-pills">
-                <li><a href="#"> Five <span class="badge">{{five}}</span></a></li>
+              <li class="dropdown">
+                <a href="#"class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Five <span class="badge">{{five}}</span><span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">{% for r in r_five %}
+                    <li><a href="#">{{ rater.id }}</a></li>
+                {% endfor %}</ul>
+              </li>
                 <li><a href="#"> Four <span class="badge">{{four}}</span></a></li>
                 <li><a href="#"> Three <span class="badge">{{three}}</span></a></li>
                 <li><a href="#"> Two <span class="badge">{{two}}</span></a></li>
                 <li><a href="#"> One <span class="badge">{{one}}</span></a></li>
             </ul>
             <div class="col2">
-            <ul g>{% for rating in movie.rating_set.all %}
+            <ul>{% for rating in movie.rating_set.all %}
                 <li id="type"><a href="{% url 'movieratings:rater_detail' rating.rater.id %}">User # {{rating.rater.id}} gave this movie a: {{rating.score}}</a></li>
                 {% endfor %}</ul>
               </div>
