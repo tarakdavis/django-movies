@@ -30,11 +30,14 @@ class Rater(models.Model):
     def movies_not_rated(self):
         return Movie.objects.exclude(id__in=self.rating_set.all())
 
-    def favorite_movies(self):
+    def liked_movies(self):
         return [rating.movie for rating in self.rating_set.all() if rating.score >= 4]
 
+    def disliked_movies(self):
+        return [rating.movie for rating in self.rating_set.all() if rating.score <= 2]
+
     def favorite_genres(self):
-        movies = self.favorite_movies()
+        movies = self.liked_movies()
         genre_dict = {}
         for movie in movies:
             genre_list = movie.genres_list()
