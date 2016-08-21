@@ -150,11 +150,13 @@ class RaterDetail(generic.DetailView):
 
     def get_context_data(self, *args, **kwargs):
         ctx = super(RaterDetail, self).get_context_data(*args, **kwargs)
-        rater = self.get_object()
+        rater = self.object
         favorite_genres = rater.favorite_genres()
-        movies = rater.movies_not_rated().annotate(num_ratings=Count('rating')).filter(num_ratings__gte=50)
+        print(favorite_genres)
+        movies = rater.movies_not_rated().annotate(num_rat=Count('rating')).filter(num_rat__gte=50)
         toprated = movies.annotate(avg_rating=Avg('rating__score')).order_by('-avg_rating')
-        preferred_genre = toprated.filter(Q(genre__contains=favorite_genres[0])|Q(genre__contains=favorite_genres[1])|Q(genre__contains=favorite_genres[2]))
+        preferred_genre = toprated.filter(Q(genre__contains=favorite_genres[0]))
+        #|Q(genre__contains=favorite_genres[1])|Q(genre__contains=favorite_genres[2]))
         occupation = rater.occupation_word()
         ctx['occupation'] = occupation
         ctx['toprated'] = toprated[:5]

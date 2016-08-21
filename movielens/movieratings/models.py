@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from collections import OrderedDict
 # from django.contrib.auth import get_user_model
 
+
 class Movie(models.Model):
     title = models.CharField(max_length=200)
     genre = models.CharField(max_length=200)
@@ -12,6 +13,7 @@ class Movie(models.Model):
 
     def genres_list(self):
         return self.genre.split('|')
+
 
 class Rater(models.Model):
     gender = models.CharField(max_length=2)
@@ -27,7 +29,7 @@ class Rater(models.Model):
         return Movie.objects.exclude(id__in=self.rating_set.all())
 
     def favorite_movies(self):
-        return Movie.objects.filter(id__in=self.rating_set.filter(score=5))
+        return [rating.movie for rating in self.rating_set.all() if rating.score >= 4]
 
     def favorite_genres(self):
         movies = self.favorite_movies()
