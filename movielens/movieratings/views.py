@@ -126,6 +126,10 @@ class MovieDetail(generic.DetailView):
         ctx['two'] = len(ratings.filter(score=2))
         ctx['one'] = len(ratings.filter(score=1))
         ctx['r_five'] = ratings.filter(score=5)
+        ctx['r_four'] = ratings.filter(score=4)
+        ctx['r_three'] = ratings.filter(score=3)
+        ctx['r_two'] = ratings.filter(score=2)
+        ctx['r_one'] = ratings.filter(score=1)
         return ctx
 
 # class MovieGenreDetail(generic.DetailView):
