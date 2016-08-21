@@ -5,14 +5,13 @@
 {% block body %}
 
      {{form.as_table}}
-     {% csrf_token %}
 
 
- <h1>Register with OUR MOVIE NAME</h1>
+ <h1>Register with Mooovies</h1>
 
  {% if registered %}
- Hello: <strong>thank you for registering!</strong>
- <a href="/index/">Return to the homepage.</a><br />
+ Congratulations!  <strong> and thank you for registering!</strong>
+ <a href="/movieratings/login/">...continue here to login.</a><br />
  {% else %}
  YO !!! : <strong>register here!</strong><br />
 
@@ -25,7 +24,7 @@
           (<p>) element. This ensures each element appears on a new line,
           making everything look neater. -->
      {{ user_form.as_p }}
-     {{ profile_form.as_p }}
+     <!-- {{ profile_form.as_p }} -->
 
      <!-- Provide a button to click to submit the form. -->
      <input type="submit" name="submit" value="Register" />

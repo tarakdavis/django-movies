@@ -1,12 +1,14 @@
-{% extends 'movieratings/base.html' %}
+{% extends 'base.html' %}
 
 {% block body %}
 {% csrf_token %}
 
 {% if user.is_authenticated %}
-<a href="/movieratings/restricted/">Restricted Page</a><br />
+<!-- <a href="/movieratings/restricted/">Restricted Page</a><br /> -->
 <a href="/movieratings/logout/">Logout</a><br />
 {% else %}
 <a href="/movieratings/register/">Register Here</a><br />
 <a href="/movieratings/login/">Login</a><br />
 {% endif %}
+
+{% endblock %}
