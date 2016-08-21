@@ -7,7 +7,8 @@
 <body>
     {% block body %}
     <div class="container">
-        <h2>{{movie.title}} </h2>
+        <h2> {{movie.title}} </h2>
+        <hr class="divider"></hr>
 
         <h4>{{ movie.genre }}</h4>
 
@@ -17,46 +18,42 @@
 
             <ul class="nav nav-pills">
               <li class="dropdown">
-                <a href="#"class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Five <span class="badge">{{five}}</span><span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Five <span class="badge">{{five}}</span><span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">{% for r in r_five %}
-                    <li><a href="#">{{ rater.id }}</a></li>
+                    <li><a href="{% url 'movieratings:rater_detail' r.rater_id %}">{{ r.rater.id }}</a></li>
                 {% endfor %}</ul>
               </li>
 
               <li class="dropdown">
-                <a href="#"class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Four <span class="badge">{{four}}</span><span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Four <span class="badge">{{four}}</span><span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">{% for r in r_four %}
-                    <li><a href="#">{{ rater.id }}</a></li>
+                    <li><a href="{% url 'movieratings:rater_detail' r.rater_id %}">{{ r.rater.id }}</a></li>
                 {% endfor %}</ul>
               </li>
 
               <li class="dropdown">
-                <a href="#"class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Three <span class="badge">{{three}}</span><span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Three <span class="badge">{{three}}</span><span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">{% for r in r_three %}
-                    <li><a href="#">{{ rater.id }}</a></li>
+                    <li><a href="{% url 'movieratings:rater_detail' r.rater_id %}">{{ r.rater.id }}</a></li>
                 {% endfor %}</ul>
               </li>
 
               <li class="dropdown">
-                <a href="#"class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Two <span class="badge">{{two}}</span><span class="caret"></span></a>
+                <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Two <span class="badge">{{two}}</span><span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">{% for r in r_two %}
-                    <li><a href="#">{{ rater.id }}</a></li>
+                    <li><a href="{% url 'movieratings:rater_detail' r.rater_id %}">{{ r.rater.id }}</a></li>
                 {% endfor %}</ul>
               </li>
 
               <li class="dropdown">
-                <a href="#"class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> One <span class="badge">{{one}}</span><span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> One <span class="badge">{{one}}</span><span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">{% for r in r_one %}
-                    <li><a href="#">{{ rater.id }}</a></li>
+                    <li><a href="{% url 'movieratings:rater_detail' r.rater_id %}">{{ r.rater.id }}</a></li>
                 {% endfor %}</ul>
               </li>
 
             </ul>
-            <div class="col2">
-            <ul>{% for rating in movie.rating_set.all %}
-                <li id="type"><a href="{% url 'movieratings:rater_detail' rating.rater.id %}">User # {{rating.rater.id}} gave this movie a: {{rating.score}}</a></li>
-                {% endfor %}</ul>
-              </div>
+
     </div>
 </body>
 {% endblock %}
