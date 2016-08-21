@@ -14,6 +14,8 @@ class Movie(models.Model):
     def genres_list(self):
         return self.genre.split('|')
 
+    def genres_list(self):
+        return self.genre.split('|')
 
 class Rater(models.Model):
     gender = models.CharField(max_length=2)
@@ -30,6 +32,18 @@ class Rater(models.Model):
 
     def favorite_movies(self):
         return [rating.movie for rating in self.rating_set.all() if rating.score >= 4]
+
+    def favorite_genres(self):
+        movies = self.favorite_movies()
+        genre_dict = {}
+        for movie in movies:
+            genre_list = movie.genres_list()
+            for genre in genre_list:
+                try:
+                    genre_dict[genre] += 1
+                except:
+                    genre_dict[genre] = 1
+        return list(OrderedDict(sorted(genre_dict.items(), key=lambda t: t[1])))[::-1]
 
     def favorite_genres(self):
         movies = self.favorite_movies()

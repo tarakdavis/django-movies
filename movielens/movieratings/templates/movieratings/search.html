@@ -1,10 +1,17 @@
 {% extends 'base.html' %}
+
+
+<head>
+</head>
 {% block body %}
-<ul>
-  {% for result in search_results %}
-  <li>
-    <a href="movieratings/movie/{{ result.id }}">{{ result }}</a>
-  </li>
-  {% endfor %}
-</ul>
+<body>
+  <div class="container">
+    <div class="divider"></div>
+  <ul id='col'>
+    {% for movie in search_results %}
+        <li><a href="{% url 'movieratings:movie_detail' movie.id %}">{{ movie.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+</body>
 {% endblock %}

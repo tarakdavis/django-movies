@@ -8,45 +8,21 @@ from django.views import View, generic
 from django.contrib.auth.forms import UserCreationForm
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
-import operator
-
-# class SearchListView(generic.ListView):
-#     """
-#     Display a Blog List page filtered by the search query.
-#     """
-#     # paginate_by = 10
-#     template_name = 'movieratings/movie_detail.html'
-#
-#     def get_queryset(self):
-#         result = super(SearchListView, self).get_queryset()
-#
-#         query = self.request.GET.get('q')
-#         if query:
-#             query_list = query.split()
-#             result = result.filter(
-#                 reduce(operator.and_,
-#                        (Q(title__icontains=q) for q in query_list)) |
-#                 reduce(operator.and_,
-#                        (Q(content__icontains=q) for q in query_list))
-#             )
-#         return result
+# from django.db.models import Q
 
 
 # working on pulling up actual movie and not a blank movie detail page
 class SearchView(generic.ListView):
     model = Movie
     select_related = ['title']
-    template_name = 'movieratings/movie_detail.html'
+    template_name = 'movieratings/search.html'
     context_object_name = 'search_results'
 
     def get_queryset(self):
         query = self.request.GET.get("q")
         if query:
-            self.model.objects.filter(title__icontains=query)
-            return MovieDetail.ctx
-        else:
-            return HttpResponseRedirect(AllMovies)
+            searched_movies = self.model.objects.filter(title__icontains=query)
+            return searched_movies
 
 
 class IndexView(View):

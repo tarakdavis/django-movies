@@ -47,7 +47,7 @@
                 <form class="navbar-form navbar-right"  action="{% url 'movieratings:search' %}" role="search" method="get" accept-charset="utf-8">
                     <div class="form-group">
                         {% csrf_token %}
-                        <input type="text" class="form-control" placeholder="Search By Title">
+                        <input type="text" class="form-control" placeholder="Search By Title" name = 'q'>
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
