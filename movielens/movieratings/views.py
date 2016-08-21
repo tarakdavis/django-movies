@@ -10,8 +10,10 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 # import operator
-from movieratings.forms import UserForm, UserProfileForm
+from movieratings.forms import UserForm
 from django.template import RequestContext
+from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt
+
 
 
 # class SearchListView(generic.ListView):
@@ -52,11 +54,11 @@ class SearchView(generic.ListView):
             return HttpResponseRedirect(AllMovies)
 
 
-class IndexView(View):
-    template_name = 'movieratings/index.html'
-
-    def get(self, request, *args, **kwargs):
-        return HttpResponse('Hello, World!')
+# class IndexView(generic.ListView):
+#     template_name = 'movieratings/index.html'
+#
+#     def get(self, request, *args, **kwargs):
+#         return HttpResponse(request)
 
 
     # def register(request):
@@ -171,6 +173,8 @@ class TopRated(generic.ListView):
 #             pass  # No backend authenticated the credentials
 #         return HttpResponse('')
 
+
+@csrf_exempt
 def register(request):
     # Like before, get the request's context.
     context = RequestContext(request)
@@ -184,10 +188,10 @@ def register(request):
         # Attempt to grab information from the raw form information.
         # Note that we make use of both UserForm and UserProfileForm.
         user_form = UserForm(data=request.POST)
-        profile_form = UserProfileForm(data=request.POST)
+        # profile_form = UserProfileForm(data=request.POST)
 
         # If the two forms are valid...
-        if user_form.is_valid() and profile_form.is_valid():
+        if user_form.is_valid():  # and profile_form.is_valid():
             # Save the user's form data to the database.
             user = user_form.save()
 
@@ -199,11 +203,11 @@ def register(request):
             # Now sort out the UserProfile instance.
             # Since we need to set the user attribute ourselves, we set commit=False.
             # This delays saving the model until we're ready to avoid integrity problems.
-            profile = profile_form.save(commit=False)
-            profile.user = user
+            # profile = profile_form.save(commit=False)
+            # profile.user = user
 
             # Now we save the UserProfile model instance.
-            profile.save()
+            # profile.save()
 
             # Update our variable to tell the template registration was successful.
             registered = True
@@ -212,20 +216,23 @@ def register(request):
         # Print problems to the terminal.
         # They'll also be shown to the user.
         else:
-            print(user_form.errors, profile_form.errors)
+            print(user_form.errors)  #  , profile_form.errors)
 
     # Not a HTTP POST, so we render our form using two ModelForm instances.
     # These forms will be blank, ready for user input.
     else:
         user_form = UserForm()
-        profile_form = UserProfileForm()
+        # profile_form = UserProfileForm()
 
     # Render the template depending on the context.
     return render_to_response(
             'movieratings/register.html',
-            {'user_form': user_form, 'profile_form': profile_form, 'registered': registered},
+            {'user_form': user_form, 'registered': registered},
             context)
 
+
+# @ensure_csrf_cookie
+@csrf_exempt
 def user_login(request):
     # Like before, obtain the context for the user's request.
     context = RequestContext(request)
@@ -250,7 +257,7 @@ def user_login(request):
                 # If the account is valid and active, we can log the user in.
                 # We'll send the user back to the homepage.
                 login(request, user)
-                return HttpResponseRedirect('/movieratings/')
+                return HttpResponseRedirect('/movieratings/toprated')
             else:
                 # An inactive account was used - no logging in!
                 return HttpResponse("Your Movie account is disabled.")
@@ -274,3 +281,6 @@ def user_logout(request):
 
     # Take the user back to the homepage.
     return HttpResponseRedirect('/movieratings/')
+
+def index(request):
+    return render_to_response('movieratings/index.html')
