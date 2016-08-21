@@ -1,7 +1,8 @@
-# registration - register user
+{% extends 'base.html' %}
 
-{% extends "base.html" %} {% block title %}Register{%
- endblock %} {% block content %}
+{% block title %}Register{% endblock %}
+
+{% block body %}
 
      {% csrf_token %}
      {{form.as_table}}
