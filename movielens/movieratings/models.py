@@ -8,7 +8,7 @@ class Movie(models.Model):
     genre = models.CharField(max_length=200)
 
     def __str__(self):
-        return "{}".format(self.title)
+        return "{}, {}".format(self.title, self.genre)
 
     def genres_list(self):
         return self.genre.split('|')
