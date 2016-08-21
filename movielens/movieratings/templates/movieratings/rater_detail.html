@@ -26,21 +26,22 @@
     </div>
   </div>
 
-  <!-- <ul id='col2'>
+  <!-- <ul>
     {% for rating in movie.rating_set.all %}
-      <li><a href="{% url 'movieratings:movie_detail' movie.id %}">{{ rating.movie.id}} {{rating.score}}</a></li>
+      <li><a href="{% url 'movieratings:movie_detail' movie.id %}">{{ rating.movie.title}} {{rating.score}}</a></li>
     {% endfor %}
   </ul> -->
+
 <div class="col-sm-6">
     <blockquote>
-      <h3> Critically Acclaimed Movies:</h3>
+      <h4> Critically Acclaimed Movies:</h4>
       <ul id="type">{% for movie in toprated %}
       <li><a href="{% url 'movieratings:movie_detail' movie.id %}">{{movie.title}}</a>: {{movie.avg_rating|floatformat:"2"}}</li>
       {% endfor %}
       </ul>
     </blockquote>
 <blockquote>
-<h3>Top picks for you:</h3>
+<h4>Top picks for you:</h4>
 <ul id="type">{% for movie in picks %}
   <li><a href="{%url 'movieratings:movie_detail' movie.id%}">{{movie.title}}</a></li>
   {% endfor %}
