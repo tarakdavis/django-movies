@@ -26,17 +26,17 @@ class SearchView(generic.ListView):
             return searched_movies
 
 
-# class GenreView(generic.ListView):
-#     model = Movie
-#     select_related = ['genre']
-#     template_name = 'movieratings/genres.html'
-#     context_object_name = 'genre_results'
-#
-#     def get_queryset(self):
-#         query = self.request.GET.get("q")
-#         if query:
-#             searched_genre = self.model.objects.filter(genre__icontains=query)
-#             return searched_genre
+class GenreView(generic.ListView):
+    model = Movie
+    select_related = ['genre']
+    template_name = 'movieratings/genres.html'
+    context_object_name = 'genre_results'
+
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        if query:
+            searched_genre = self.model.objects.filter(genre__icontains=query)
+            return searched_genre
 
 
 class IndexView(View):
@@ -92,14 +92,6 @@ class AllMovies(generic.ListView):
         movies = Movie.objects.order_by('title')
         return movies
 
-
-# def movie_detail(request, pk):
-#     movie = get_object_or_404(Movie, pk=pk)
-#     ratings = movie.rating_set.all()
-#     avg_rating = ratings.aggregate(Avg('score'))['score__avg']
-#     context = {'movie': movie, 'ratings': ratings,
-#                'avg_rating': avg_rating}
-#     return render(request, 'movieratings/movie_detail.html', context)
 
 class MovieDetail(generic.DetailView):
     model = Movie
