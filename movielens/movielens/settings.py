@@ -36,6 +36,7 @@ FIXTURE_DIRS = [
 INSTALLED_APPS = [
     'movieratings.apps.MovieratingsConfig',
     'django.contrib.admin',
+    'django.contrib.admindocs',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',

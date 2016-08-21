@@ -12,6 +12,13 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
+
+TRW took this out:       url(r'^register/', CreateView.as_view(
+            template_name='register.html',
+            form_class=UserCreationForm,
+            success_url='/'
+    )),
+
 """
 from django.conf.urls import url, include
 from django.contrib import admin
@@ -20,11 +27,6 @@ from django.contrib.auth.forms import UserCreationForm
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^register/', CreateView.as_view(
-            template_name='register.html',
-            form_class=UserCreationForm,
-            success_url='/'
-    )),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^movieratings/', include('movieratings.urls'))
 ]

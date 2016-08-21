@@ -11,7 +11,10 @@ urlpatterns = [
     url(r'^search/$', views.SearchView.as_view(), name='search'),
     url(r'^allmovies', views.AllMovies.as_view(), name='all_movies'),
     url(r'^movie/(?P<pk>[0-9]+)/$', views.MovieDetail.as_view(), name='movie_detail'),
-    url(r'^rater/(?P<pk>[0-9]+)/$', views.RaterDetail.as_view(), name='rater_detail')
+    url(r'^rater/(?P<pk>[0-9]+)/$', views.RaterDetail.as_view(), name='rater_detail'),
+    url(r'^register/$', views.register, name='register'), # these 3: conflicting with prior auths urls?
+    url(r'^login/$', views.user_login, name='login'),
+    url(r'^logout/$', views.user_logout, name='logout'),
     ]
 # user auth urls
 # url(r'^accounts/auth/$', views.auth_view),
