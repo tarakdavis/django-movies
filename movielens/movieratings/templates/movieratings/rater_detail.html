@@ -7,10 +7,11 @@
 {% block body %}
 <div class="container">
 <h2> Rater # {{rater.id}}</h2>
+<hr class="divider"></hr>
 </div>
 <div class="container">
   <div class="col-sm-4">
-  <div class="panel panel-primary">
+  <div class="panel panel-success">
     <div class="panel-heading">
       <h3 class="panel-title"> Personal Information </h3>
     </div>
@@ -30,25 +31,21 @@
       <li><a href="{% url 'movieratings:movie_detail' movie.id %}">{{ rating.movie.id}} {{rating.score}}</a></li>
     {% endfor %}
   </ul> -->
-
 <div class="col-sm-6">
-  <div class="panel panel-success">
-    <div class="panel-heading">
-      <h3 class="panel-title">Recommended for you:</h3>
-    </div>
-    <div class="panel-body">
+    <blockquote>
+      <h3> Critically Acclaimed Movies:</h3>
       <ul id="type">{% for movie in toprated %}
       <li><a href="{% url 'movieratings:movie_detail' movie.id %}">{{movie.title}}</a>: {{movie.avg_rating|floatformat:"2"}}</li>
       {% endfor %}
       </ul>
-    </div>
-    </div>
+    </blockquote>
 <blockquote>
 <h3>Top picks for you:</h3>
-<ul>{% for movie in picks %}
-  <li>{{movie.title}}</li>
+<ul id="type">{% for movie in picks %}
+  <li><a href="{%url 'movieratings:movie_detail' movie.id%}">{{movie.title}}</a></li>
   {% endfor %}
 </ul></blockquote>
+</div>
 {% endblock %}
 
 </div>
