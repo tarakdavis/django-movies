@@ -16,10 +16,14 @@
     background-image: url(https://i.ytimg.com/vi/j1pf6s8MGrs/maxresdefault.jpg);
 }
 
+h2 {
+  color: #C40000;
+}
 
 table tr {
   counter-increment: rowNumber;
 }
+
 table tr td:first-child::before {
   content: counter(rowNumber);
 }
@@ -47,11 +51,6 @@ h5{
   margin-left: 30px;
 }
 
- #type{
-   list-style-type: none;
- }
-
-.col2{
-  columns: 4;
-  margin-top: 40px;
+#type {
+  list-style-type: none;
 }
