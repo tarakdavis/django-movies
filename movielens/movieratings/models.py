@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from collections import OrderedDict
 # from django.contrib.auth import get_user_model
 
 class Movie(models.Model):
@@ -9,6 +10,8 @@ class Movie(models.Model):
     def __str__(self):
         return "{}".format(self.title)
 
+    def genres_list(self):
+        return self.genre.split('|')
 
 class Rater(models.Model):
     gender = models.CharField(max_length=2)
@@ -25,6 +28,18 @@ class Rater(models.Model):
 
     def favorite_movies(self):
         return Movie.objects.filter(id__in=self.rating_set.filter(score=5))
+
+    def favorite_genres(self):
+        movies = self.favorite_movies()
+        genre_dict = {}
+        for movie in movies:
+            genre_list = movie.genres_list()
+            for genre in genre_list:
+                try:
+                    genre_dict[genre] += 1
+                except:
+                    genre_dict[genre] = 1
+        return list(OrderedDict(sorted(genre_dict.items(), key=lambda t: t[1])))[::-1]
 
     def occupation_word(self):
         context_tuple = ((0, 'other'),
