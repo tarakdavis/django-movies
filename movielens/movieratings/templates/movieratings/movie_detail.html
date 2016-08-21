@@ -8,12 +8,11 @@
     {% block body %}
     <div class="container">
         <h2>{{movie.title}} </h2>
+
+        <h4>{{ movie.genre }}</h4>
+
         <h4> Average rating: {{avg_rating|floatformat:"2"}}</h4>
-
-        <ul>{% for each in genres_list %}
-            <li>{{ each }}</li>
-            {% endfor %}</ul>
-
+        
         <h4>Ratings:</h4>
             <ul class="nav nav-pills">
                 <li><a href="#"> Five <span class="badge">{{five}}</span></a></li>
