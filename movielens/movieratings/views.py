@@ -131,7 +131,7 @@ class RaterDetail(generic.DetailView):
         print(favorite_genres)
         movies = rater.movies_not_rated().annotate(num_rat=Count('rating')).filter(num_rat__gte=50)
         toprated = movies.annotate(avg_rating=Avg('rating__score')).order_by('-avg_rating')
-        preferred_genre = toprated.filter(Q(genre__contains=favorite_genres[0]))
+        preferred_genre = toprated.filter(genre__contains=favorite_genres[0])
 
         #|Q(genre__contains=favorite_genres[1])|Q(genre__contains=favorite_genres[2]))
 
