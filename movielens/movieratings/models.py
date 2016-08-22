@@ -94,3 +94,12 @@ class Rating(models.Model):
 
     def __str__(self):
         return ("Rater: {}, Movie: {}, Score: {}".format(self.rater_id, self.movie.title, self.score))
+
+
+class UserProfile(models.Model):
+    # This line is required. Links UserProfile to a User model instance.
+    user = models.OneToOneField(User)
+
+    # Override the __unicode__() method to return out something meaningful!
+    def __unicode__(self):
+        return self.user.username

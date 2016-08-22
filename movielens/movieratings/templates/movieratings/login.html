@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+<h1>Login to Mooooovies</h1>
+
+<form id="login_form" method="post" action="/movieratings/login/">
+    {% csrf_token %}
+    Username: <input type="text" name="username" value="" size="50" />
+    <br />
+    Password: <input type="password" name="password" value="" size="50" />
+    <br />
+
+    <input type="submit" value="submit" />
+</form>
+
+{% endblock %}
