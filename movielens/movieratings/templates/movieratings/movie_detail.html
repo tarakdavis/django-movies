@@ -9,10 +9,11 @@
     <div class="container">
         <h2> {{movie.title}} </h2>
         <hr class="divider"></hr>
-
+        <li><a href="{% url 'movieratings:new_rating' %}">Rate This Movie</span></a></li>
         <h4>{{ movie.genre }}</h4>
 
         <h4> Average Rating: {{avg_rating|floatformat:"2"}}</h4>
+
 
         <h4>Ratings:</h4>
 
