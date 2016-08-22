@@ -24,8 +24,11 @@
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Genres <span class="caret"></span></a>
                           <ul class="dropdown-menu" role="menu">
-                          {% csrf_token %}
-                            <li><a href="{% url 'movieratings:genre' %}" name = 'act' method="get">Action</a></li>
+                          <!-- {% csrf_token %}
+                          {% for genre in genres %}
+                              <option value="genre">{{ movie.genre }}</option>
+                          {% endfor %} -->
+                            <li><a href="{% url 'movieratings:genre' %}" name = 'act'>Action</a></li>
                             <li><a href="{% url 'movieratings:genre' %}" name = 'adve'>Adventure</a></li>
                             <li><a href="{% url 'movieratings:genre' %}" name = 'ani'>Animation</a></li>
                             <li><a href="{% url 'movieratings:genre' %}" name = 'chil'>Children's</a></li>

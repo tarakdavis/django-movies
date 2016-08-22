@@ -27,14 +27,15 @@ class SearchView(generic.ListView):
             return searched_movies
 
 
-# class DefineGenre(generic.ListView):
-#     template_name = 'base.html'
-#     model = Model
-#     select_related = ['genre']
-#
-#     def get_queryset(self):
-#         genres = Movie.objects.filter(genre)
-#         return genres
+class DefineGenre(generic.ListView):
+    template_name = 'base.html'
+    model = Movie
+    select_related = ['genre']
+    context_object_name = 'genres'
+
+    def get_queryset(self):
+        genres = Movie.objects.filter('genre')
+        return genres
 
 
 
@@ -142,14 +143,15 @@ class RaterDetail(generic.DetailView):
         ctx['age_bracket'] = rater.age_bracket()
         return ctx
 
-# class NewRating(generic.ListView):
-#     template_name = 'movieratings/newrating.html'
-#     context_object_name = 'new_rating'
-#     model = Rating
-#
-#     def get(self, request, *args, **kwargs):
-#         ctx = model.objects.all()
-#         return ctx
+
+class NewRating(generic.ListView):
+    template_name = 'movieratings/new_rating.html'
+    context_object_name = 'new_rating'
+    model = Rating
+
+    # def get(self, request, *args, **kwargs):
+    #     ctx = Rating.objects.all()
+    #     return ctx
 
 
 class TopRated(generic.ListView):
@@ -163,7 +165,7 @@ class TopRated(generic.ListView):
         return toprated
 
 
-@csrf_exempt
+# @csrf_exempt
 def register(request):
     # Like before, get the request's context.
     context = RequestContext(request)
@@ -203,14 +205,14 @@ def register(request):
         user_form = UserForm()
 
     # Render the template depending on the context.
-    return render_to_response(
+    return render(request,
             'movieratings/register.html',
             {'user_form': user_form, 'registered': registered},
             context)
 
 
 # @ensure_csrf_cookie
-@csrf_exempt
+# @csrf_exempt
 def user_login(request):
     # Like before, obtain the context for the user's request.
     context = RequestContext(request)
@@ -249,7 +251,8 @@ def user_login(request):
     else:
         # No context variables to pass to the template system, hence the
         # blank dictionary object...
-        return render_to_response('movieratings/login.html', {}, context)
+        # return render('movieratings/login.html', {}, context)
+        return render(request, 'movieratings/login.html')
 
 # Use the login_required() decorator to ensure only those logged in can access the view.
 @login_required
