@@ -19,18 +19,44 @@ class SearchView(generic.ListView):
 
     def get_queryset(self):
         query = self.request.GET.get("q")
-        if query == '':
-            HttpResponse('Your search was empty, try again!')
-        elif query:
+        if query:
             searched_movies = self.model.objects.filter(title__icontains=query)
             return searched_movies
+
+
+class DefineGenre(generic.ListView):
+    template_name = 'base.html'
+    context_object_name = 'genre'
+    model = Movie
+
+    def get_queryset(self):
+        genres = [Movie.genre for Movie in AllMovies]
+        return genres
 
 
 class GenreView(generic.ListView):
     model = Movie
     select_related = ['genre']
-    template_name = 'movieratings/genres.html'
+    template_name = 'genres.html'
     context_object_name = 'genre_results'
+    # q = {
+    #     'act': "Action",
+    #     'adve': 'Adventure',
+    #     'ani': 'Animation',
+    #     'chil': "Children",
+    #     'com': 'Comedy',
+    #     'doc': "Documentary",
+    #     'drama': 'Drama',
+    #     'fant': "Fantasy",
+    #     'noir': "Film-Noir",
+    #     'horror': "Horror",
+    #     'mus': "Musical",
+    #     'mys': "Mystery",
+    #     'rom': "Romance",
+    #     'sci': "Sci-Fi",
+    #     'thr': "Thriller",
+    #     'war': "War",
+    #     'west': "Western"}
 
     def get_queryset(self):
         query = self.request.GET.get("q")
