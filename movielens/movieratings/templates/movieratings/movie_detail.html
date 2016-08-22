@@ -18,35 +18,35 @@
 
             <ul class="nav nav-pills">
               <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Five <span class="badge">{{five}}</span><span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span>&#9734</span><span>&#9734</span><span>&#9734</span><span>&#9734</span><span>&#9734</span> <span class="badge">{{five}}</span><span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">{% for r in r_five %}
                     <li><a href="{% url 'movieratings:rater_detail' r.rater_id %}">{{ r.rater.id }}</a></li>
                 {% endfor %}</ul>
               </li>
 
               <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Four <span class="badge">{{four}}</span><span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span>&#9734</span><span>&#9734</span><span>&#9734</span><span>&#9734</span> <span class="badge">{{four}}</span><span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">{% for r in r_four %}
                     <li><a href="{% url 'movieratings:rater_detail' r.rater_id %}">{{ r.rater.id }}</a></li>
                 {% endfor %}</ul>
               </li>
 
               <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Three <span class="badge">{{three}}</span><span class="caret"></span></a>
+                <a id="star" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span>&#9734</span><span>&#9734</span><span>&#9734</span> <span class="badge">{{three}}</span><span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">{% for r in r_three %}
                     <li><a href="{% url 'movieratings:rater_detail' r.rater_id %}">{{ r.rater.id }}</a></li>
                 {% endfor %}</ul>
               </li>
 
               <li class="dropdown">
-                <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Two <span class="badge">{{two}}</span><span class="caret"></span></a>
+                <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span>&#9734</span><span>&#9734</span> <span class="badge">{{two}}</span><span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">{% for r in r_two %}
                     <li><a href="{% url 'movieratings:rater_detail' r.rater_id %}">{{ r.rater.id }}</a></li>
                 {% endfor %}</ul>
               </li>
 
               <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> One <span class="badge">{{one}}</span><span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span>&#9734</span> <span class="badge">{{one}}</span><span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">{% for r in r_one %}
                     <li><a href="{% url 'movieratings:rater_detail' r.rater_id %}">{{ r.rater.id }}</a></li>
                 {% endfor %}</ul>

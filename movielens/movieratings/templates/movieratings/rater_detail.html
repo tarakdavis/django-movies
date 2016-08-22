@@ -1,53 +1,55 @@
 {% extends 'base.html' %}
+
 <head>
-{% block title %}{{rater.user}}{% endblock %}
+    {% block title %}{{rater.user}}{% endblock %}
 </head>
 
 <body>
-{% block body %}
-<div class="container">
-<h2> Rater # {{rater.id}}</h2>
-<hr class="divider"></hr>
-</div>
-<div class="container">
-  <div class="col-sm-4">
-  <div class="panel panel-success">
-    <div class="panel-heading">
-      <h3 class="panel-title"> Personal Information </h3>
+    {% block body %}
+    <div class="container">
+        <h2> Rater # {{rater.id}}</h2>
+        <hr class="divider"></hr>
     </div>
-    <div class="panel-body">
-      <h5> Age Bracket: {{age_bracket}} years old <h5>
+    <div class="container">
+        <div class="col-sm-4">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title"> Personal Information </h3>
+                </div>
+                <div class="panel-body">
+                    <h5> Age Bracket: {{age_bracket}} years old <h5>
       <h5> Gender:
       {% if rater.gender == 'M' %}Male{% endif %}
       {% if rater.gender == 'F' %}Female{% endif %}
       </h5>
-      <h5> Occupation: {{occupation}} </h5>
-    </div>
-    </div>
-  </div>
+                    <h5> Occupation: {{occupation}} </h5>
+                </div>
+            </div>
+        </div>
 
-  <!-- <ul>
+        <!-- <ul>
     {% for rating in movie.rating_set.all %}
       <li><a href="{% url 'movieratings:movie_detail' movie.id %}">{{ rating.movie.title}} {{rating.score}}</a></li>
     {% endfor %}
   </ul> -->
 
-<div class="col-sm-6">
-    <blockquote>
-      <h4> Critically Acclaimed Movies:</h4>
-      <ul id="type">{% for movie in toprated %}
-      <li><a href="{% url 'movieratings:movie_detail' movie.id %}">{{movie.title}}</a>: {{movie.avg_rating|floatformat:"2"}}</li>
-      {% endfor %}
-      </ul>
-    </blockquote>
-<blockquote>
-<h4>Top picks for you:</h4>
-<ul id="type">{% for movie in picks %}
-  <li><a href="{%url 'movieratings:movie_detail' movie.id%}">{{movie.title}}</a></li>
-  {% endfor %}
-</ul></blockquote>
-</div>
-{% endblock %}
+        <div class="col-sm-6">
+            <blockquote>
+                <h4> Critically Acclaimed Movies:</h4>
+                <ul id="type">{% for movie in toprated %}
+                    <li><a href="{% url 'movieratings:movie_detail' movie.id %}">{{movie.title}}</a>: {{movie.avg_rating|floatformat:"2"}}</li>
+                    {% endfor %}
+                </ul>
+            </blockquote>
+            <blockquote>
+                <h4>Top picks for you:</h4>
+                <ul id="type">{% for movie in picks %}
+                    <li><a href="{%url 'movieratings:movie_detail' movie.id%}">{{movie.title}}</a></li>
+                    {% endfor %}
+                </ul>
+            </blockquote>
+        </div>
+        {% endblock %}
 
-</div>
+    </div>
 </body>

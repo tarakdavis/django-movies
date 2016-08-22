@@ -6,14 +6,21 @@
 
      {{form.as_table}}
 
-
+<div class="container">
  <h1>Register with Mooovies</h1>
+ <hr class="divider"> </hr>
 
  {% if registered %}
- Congratulations!  <strong> and thank you for registering!</strong>
- <a href="/movieratings/login/">...continue here to login.</a><br />
+
+ <div class="alert alert-dismissible alert-success">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>i
+  <h4>Congratulations!</h4>
+  <h5> and thank you for registering! <a href="/movieratings/login/" class="alert-link">...continue here to login.</a></h5>
+</div>
+
+
  {% else %}
- YO !!! : <strong>register here!</strong><br />
+
 
  <form id="user_form" method="post" action="/movieratings/register/"
          enctype="multipart/form-data">
@@ -27,8 +34,9 @@
      <!-- {{ profile_form.as_p }} -->
 
      <!-- Provide a button to click to submit the form. -->
-     <input type="submit" name="submit" value="Register" />
+     <button type="submit" class="btn btn-primary">Submit</button>
  </form>
+ </div>
  {% endif %}
 
  {% endblock %}
