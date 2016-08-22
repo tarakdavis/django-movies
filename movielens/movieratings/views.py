@@ -27,14 +27,15 @@ class SearchView(generic.ListView):
             return searched_movies
 
 
-class DefineGenre(generic.ListView):
-    template_name = 'base.html'
-    context_object_name = 'genre'
-    model = Movie
+# class DefineGenre(generic.ListView):
+#     template_name = 'base.html'
+#     model = Model
+#     select_related = ['genre']
+#
+#     def get_queryset(self):
+#         genres = Movie.objects.filter(genre)
+#         return genres
 
-    def get_queryset(self):
-        genres = [Movie.genre for Movie in AllMovies]
-        return genres
 
 
 class GenreView(generic.ListView):
