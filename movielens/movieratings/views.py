@@ -27,14 +27,15 @@ class SearchView(generic.ListView):
             return searched_movies
 
 
-# class DefineGenre(generic.ListView):
-#     template_name = 'base.html'
-#     model = Model
-#     select_related = ['genre']
-#
-#     def get_queryset(self):
-#         genres = Movie.objects.filter(genre)
-#         return genres
+class DefineGenre(generic.ListView):
+    template_name = 'base.html'
+    model = Movie
+    select_related = ['genre']
+    context_object_name = 'genres'
+
+    def get_queryset(self):
+        genres = Movie.objects.filter('genre')
+        return genres
 
 
 
@@ -142,14 +143,15 @@ class RaterDetail(generic.DetailView):
         ctx['age_bracket'] = rater.age_bracket()
         return ctx
 
-# class NewRating(generic.ListView):
-#     template_name = 'movieratings/newrating.html'
-#     context_object_name = 'new_rating'
-#     model = Rating
-#
-#     def get(self, request, *args, **kwargs):
-#         ctx = model.objects.all()
-#         return ctx
+
+class NewRating(generic.ListView):
+    template_name = 'movieratings/new_rating.html'
+    context_object_name = 'new_rating'
+    model = Rating
+
+    # def get(self, request, *args, **kwargs):
+    #     ctx = Rating.objects.all()
+    #     return ctx
 
 
 class TopRated(generic.ListView):
