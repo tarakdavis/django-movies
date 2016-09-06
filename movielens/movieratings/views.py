@@ -82,7 +82,17 @@ class AllMovies(generic.ListView):
     context_object_name = 'all_movies'
 
     def get_queryset(self):
-        movies = Movie.objects.order_by('title')
+        params = self.request.GET
+        if "sort" in params:
+            print(params['sort'])
+            print('LEN OF PARAMS', len(params))
+            movies = Movie.objects.all()
+            for sort_thing in params.values():
+                print(sort_thing)
+                movies.order_by(sort_thing)
+
+
+        # movies = Movie.objects.order_by('title')
         return movies
 
 
