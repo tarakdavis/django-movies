@@ -11,8 +11,8 @@ Ability to create a front-end JavaScript web application.
 
 #Collaborators
 - Tara Davis: https://github.com/tarakdavis
-- Maggie : https://github.com/
-- Peter Lawless: https://github.com/
+- Maggie Correll: https://github.com/maggiecorrell
+- Peter Lawless: https://github.com/peterlawless
 - T Robert Ward: https://github.com/TRIYGH
 
 #Important files in this folder
