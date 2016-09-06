@@ -4,17 +4,17 @@
 
 {% block body %}
 <div class="container">
-<h1>Login to Mooooovies</h1>
+<h1>Login to Mooovies</h1>
 <hr class="divider"></hr>
 <form id="login_form" method="post" action="/movieratings/login/">
     {% csrf_token %}
-    Username: <div class="space"><input type="text" name="username" value="" size="50" /></div>
+    Username: <input type="text" name="username" value="" size="50" />
 
-    Password: <div class="space"><input type="password" name="password" value="" size="50" /></div>
+    Password: <input type="password" name="password" value="" size="50" />
 
 
     <button type="submit" class="btn btn-primary">Submit</button>
-      
+
 </form>
 </div>
 {% endblock %}
